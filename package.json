@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "@emotion/styled": "^10.0.27",
+    "@emotion/core": "^10.0.27",
     "i18next": "^19.8.3",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.0.21",
@@ -93,5 +94,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@translations(.*)$": "<rootDir>/src/translations$1"
+    }
   }
 }
