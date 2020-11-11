@@ -4,6 +4,21 @@
 
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
+const path = require('path');
+
+const rewireAliases = (configFile) => {
+  const config = configFile;
+
+  config.resolve = {
+    ...config.resolve,
+    alias: {
+      '@translations': path.resolve(__dirname, 'src/translations/'),
+    },
+  };
+
+  return config;
+};
+
 const rewireBundleAnalyzer = (configFile) => {
   if (!process.argv.includes('--analyze-bundles')) return configFile;
 
@@ -18,7 +33,8 @@ const rewireBundleAnalyzer = (configFile) => {
   return config;
 };
 
-module.exports = (config, env) => {
-  rewireBundleAnalyzer(config, env);
+module.exports = (config) => {
+  rewireAliases(config);
+  rewireBundleAnalyzer(config);
   return config;
 };
