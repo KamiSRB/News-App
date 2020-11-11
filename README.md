@@ -72,12 +72,13 @@ npm install -g yarn
 
 We use [Visual Studio Code](https://code.visualstudio.com/) as a code editor for this project during development. If you don't have it installed, please install it first.
 
-Extensions we are using for this project are [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+Extensions we are using for this project are [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
 All needed settings are configured specifically for this project and can be found at the following locations:
 VSCode settings - [.vscode\settings.json](.vscode\settings.json)
 ESLint settings - [.eslintrc](.eslintrc)
 Prettier settings - [.prettierrc](.prettierrc)
+EditorConfig settings - [.editorconfig](.editorconfig)
 
 ### Running the application
 
