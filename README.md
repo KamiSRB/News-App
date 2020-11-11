@@ -115,3 +115,26 @@ In order to do this, you must have [serve](https://www.npmjs.com/package/serve) 
 ```bash
 npm install -g serve
 ```
+
+## Internationalization
+
+Translation solution can be found in the [src\translations](src\translations) directory.
+That directory has an import alias `@translations` to ease the use of the solution.
+
+### Adding translations
+
+Translations are placed inside the [src\translations\values](src\translations\values) directory.
+List of namespaces is placed inside the [src\translations\namespaces.ts](src\translations\namespaces.ts) file.
+
+On addin a new translated text, update the `src\translations\values\{language}\{namespace}.json` file and the `src\translations\values\dev\{namespace}.translations.ts` file.
+
+### Using translations
+
+New custom hook is created to translate the text easily.
+
+```react
+import { namespaces, globalTranslations, useTranslate } from '@translations';
+
+const translate = useTranslate(namespaces.global);
+const translatedText = translate(globalTranslations.translation);
+```
