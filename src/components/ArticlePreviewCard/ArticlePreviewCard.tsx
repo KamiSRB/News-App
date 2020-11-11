@@ -24,9 +24,9 @@ const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({
   const translate = useTranslate(namespaces.global);
 
   return (
-    <StyledCardDiv onClick={onClick}>
+    <StyledCardDiv onClick={onClick} data-testid="article-preview">
       <StyledTitleDiv>{title}</StyledTitleDiv>
-      <StyledPreviewImg src={imageSrc} alt="" />
+      <StyledPreviewImg src={imageSrc} alt="" data-testid="article-preview-img" />
       <StyledDescriptionDiv>{description}</StyledDescriptionDiv>
       <StyledMoreLinkDiv>{translate(globalTranslations.DivReadMoreText)} &gt;</StyledMoreLinkDiv>
     </StyledCardDiv>
