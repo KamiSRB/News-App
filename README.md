@@ -52,6 +52,14 @@ Visualizes size of webpack output files with an interactive zoomable treemap.
 Runs lintig on the all included files.
 This script runs automaticaly before any commit and linting checks must pass in order to commit changes successfully.
 
+### `yarn storybook`
+
+Runs the storybook
+
+### `yarn build-storybook`
+
+Makes a production storybook build
+
 ## Running the application
 
 ### First time use

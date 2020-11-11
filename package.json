@@ -12,6 +12,14 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-knobs": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/node-logger": "^6.0.28",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.0.28",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -21,6 +29,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
+    "babel-loader": "^8.2.1",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^6.15.0",
@@ -36,6 +45,7 @@
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",
     "react-app-rewired": "^2.1.6",
+    "react-is": "^17.0.1",
     "react-scripts": "4.0.0",
     "react-test-renderer": "^17.0.1",
     "remark-cli": "^9.0.0",
@@ -52,7 +62,9 @@
     "lint:ts": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "lint:md": "remark .",
     "lint:prettier": "pretty-quick --staged",
-    "lint": "run-p lint:ts lint:md lint:prettier"
+    "lint": "run-p lint:ts lint:md lint:prettier",
+    "storybook": "start-storybook -p 6006 -s public --no-dll",
+    "build-storybook": "build-storybook -s public --no-dll"
   },
   "husky": {
     "hooks": {
