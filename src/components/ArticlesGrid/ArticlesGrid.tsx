@@ -11,7 +11,7 @@ const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles }) => {
   return (
     <StyledGridDiv>
       {articles.map((article) => (
-        <StyledArticleWrapperDiv key={article.id}>
+        <StyledArticleWrapperDiv key={article.id} data-testid="article">
           <ArticlePreviewCard
             title={article.title}
             description={article.description}
