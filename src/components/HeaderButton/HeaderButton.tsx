@@ -1,4 +1,6 @@
 import React, { PropsWithChildren, useCallback } from 'react';
+import { useTheme } from '@emotion/react';
+import { Theme } from 'src/types/Theme.types';
 import { StyledHeaderButtonWrapperDiv } from './HeaderButton.styles';
 
 interface Props {
@@ -17,6 +19,7 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
   isDisabled = false,
   children,
 }) => {
+  const theme = useTheme() as Theme;
   const emptyCallback = useCallback(() => undefined, []);
 
   return (
@@ -25,6 +28,7 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
       isActive={isActive}
       isDisabled={isDisabled}
       data-testid="header-button"
+      theme={theme}
     >
       {children || text}
     </StyledHeaderButtonWrapperDiv>

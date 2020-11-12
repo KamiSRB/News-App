@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslate, globalTranslations, namespaces } from '@translations';
+import { useTheme } from '@emotion/react';
 import {
   StyledCardDiv,
   StyledTitleDiv,
@@ -7,6 +8,7 @@ import {
   StyledMoreLinkDiv,
   StyledDescriptionDiv,
 } from './ArticlePreviewCard.styles';
+import { Theme } from '../../types/Theme.types';
 
 export interface ArticlePreviewCardProps {
   title: string;
@@ -21,14 +23,17 @@ const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({
   imageSrc,
   onClick,
 }) => {
+  const theme = useTheme() as Theme;
   const translate = useTranslate(namespaces.global);
 
   return (
-    <StyledCardDiv onClick={onClick} data-testid="article-preview">
-      <StyledTitleDiv>{title}</StyledTitleDiv>
-      <StyledPreviewImg src={imageSrc} alt="" data-testid="article-preview-img" />
-      <StyledDescriptionDiv>{description}</StyledDescriptionDiv>
-      <StyledMoreLinkDiv>{translate(globalTranslations.DivReadMoreText)} &gt;</StyledMoreLinkDiv>
+    <StyledCardDiv onClick={onClick} data-testid="article-preview" theme={theme}>
+      <StyledTitleDiv theme={theme}>{title}</StyledTitleDiv>
+      <StyledPreviewImg src={imageSrc} alt="" data-testid="article-preview-img" theme={theme} />
+      <StyledDescriptionDiv theme={theme}>{description}</StyledDescriptionDiv>
+      <StyledMoreLinkDiv theme={theme}>
+        {translate(globalTranslations.DivReadMoreText)} &gt;
+      </StyledMoreLinkDiv>
     </StyledCardDiv>
   );
 };

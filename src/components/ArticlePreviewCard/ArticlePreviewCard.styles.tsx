@@ -1,35 +1,37 @@
 import styled from '@emotion/styled';
+import { Theme } from 'src/types/Theme.types';
+import { transparentize } from 'polished';
 
-export const StyledCardDiv = styled.div`
+export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
   display: flex;
   flex-direction: column;
   position: relative;
   width: 300px;
   height: 300px;
-  border: solid 1px rgba(0, 0, 0, 0.4);
+  border: ${({ theme }) => `solid 1px ${transparentize(0.6)(theme.color.border)}`};
   border-radius: 5%;
   padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ${({ theme }) => theme.fontFamily.sansSerif};
   cursor: pointer;
   overflow: hidden;
 
   :hover {
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: ${({ theme }) => `1px 1px 10px ${transparentize(0.8)(theme.color.border)}`};
   }
 `;
 
-export const StyledTitleDiv = styled.div`
+export const StyledTitleDiv = styled.div<Record<never, never>, Theme>`
   flex-basis: 10%;
   flex-grow: 1;
   flex-shrink: 0;
   font-weight: bold;
 
   :hover {
-    color: #0000e6;
+    color: ${({ theme }) => theme.color.hoverLink};
   }
 `;
 
-export const StyledDescriptionDiv = styled.div`
+export const StyledDescriptionDiv = styled.div<Record<never, never>, Theme>`
   flex-basis: 20%;
   flex-grow: 1;
   flex-shrink: 1;
@@ -45,7 +47,10 @@ export const StyledDescriptionDiv = styled.div`
     right: 0;
     width: 70%;
     height: 1.2em;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%);
+    background: ${({ theme }) =>
+      `linear-gradient(to right, ${transparentize(1)(theme.color.background)}, ${transparentize(0)(
+        theme.color.background
+      )} 80%)`};
   }
 `;
 
@@ -59,14 +64,14 @@ export const StyledPreviewImg = styled.img`
   padding: 5px 0px;
 `;
 
-export const StyledMoreLinkDiv = styled.div`
+export const StyledMoreLinkDiv = styled.div<Record<never, never>, Theme>`
   text-align: right;
   flex-basis: 10%;
   flex-shrink: 0%;
   padding-top: 10px;
 
   :hover {
-    color: #0000e6;
+    color: ${({ theme }) => theme.color.hoverLink};
   }
 `;
 
