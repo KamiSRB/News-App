@@ -11,6 +11,13 @@ const imageSrc =
 export default {
   title: 'Molecules/ArticlePreviewCard',
   component: ArticlePreviewCard,
+  argTypes: {
+    onClick: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story<ArticlePreviewCardProps> = (props) => (
