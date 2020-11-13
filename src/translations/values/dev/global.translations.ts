@@ -7,6 +7,10 @@ const globalTranslations = {
     key: 'DivReadMore-Text',
     defaultValue: 'More',
   },
+  InputSearchPlaceholder: {
+    key: 'InputSearch-Placeholder',
+    defaultValue: 'Search term...',
+  },
 } as const;
 
 export default globalTranslations;
