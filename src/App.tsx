@@ -1,7 +1,7 @@
 import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { i18n, namespaces, globalTranslations, useTranslate } from '@translations';
-import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from 'emotion-theming';
 import theme from './theme';
 
 const App: React.FC = () => {

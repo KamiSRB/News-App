@@ -1,5 +1,5 @@
 import React from 'react';
-import { Article } from 'src/types/Article.types';
+import { Article } from '../../types/Article.types';
 import ArticlePreviewCard from '../ArticlePreviewCard';
 import { StyledArticleWrapperDiv, StyledGridDiv } from './ArticlesGrid.styles';
 

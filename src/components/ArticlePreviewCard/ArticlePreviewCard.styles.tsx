@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Theme } from 'src/types/Theme.types';
 import { transparentize } from 'polished';
+import { Theme } from '../../types/Theme.types';
 
 export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
   display: flex;

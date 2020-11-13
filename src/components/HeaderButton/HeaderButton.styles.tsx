@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Theme } from 'src/types/Theme.types';
+import { Theme } from '../../types/Theme.types';
 
 interface StyledHeaderButtonWrapperDivProps {
   isActive: boolean;

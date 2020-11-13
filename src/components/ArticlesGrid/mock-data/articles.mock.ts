@@ -1,5 +1,5 @@
-import { Article } from 'src/types/Article.types';
 import { v4 as uuidv4 } from 'uuid';
+import { Article } from '../../../types/Article.types';
 
 const articleMock: Article = {
   id: '',

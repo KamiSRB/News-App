@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslate, globalTranslations, namespaces } from '@translations';
-import { useTheme } from '@emotion/react';
+import { useTheme } from 'emotion-theming';
 import {
   StyledCardDiv,
   StyledTitleDiv,
