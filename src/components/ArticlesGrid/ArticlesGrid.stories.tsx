@@ -3,6 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { DISABLED_STORYBOOK_CONTROL } from '../../constants';
 import ArticlesGrid, { ArticlesGridProp } from './ArticlesGrid';
 import articles from './mock-data/articles.mock';
 
@@ -13,11 +14,7 @@ export default {
     articles,
   },
   argTypes: {
-    articles: {
-      table: {
-        disable: true,
-      },
-    },
+    articles: DISABLED_STORYBOOK_CONTROL,
   },
 } as Meta<ArticlesGridProp>;
 

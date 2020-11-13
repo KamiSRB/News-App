@@ -12,8 +12,3 @@ export const StyledGridDiv = styled.div`
 export const StyledArticleWrapperDiv = styled.div`
   margin-bottom: 50px;
 `;
-
-export default {
-  StyledGridDiv,
-  StyledArticleWrapperDiv,
-};

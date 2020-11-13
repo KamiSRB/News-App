@@ -74,11 +74,3 @@ export const StyledMoreLinkDiv = styled.div<Record<never, never>, Theme>`
     color: ${({ theme }) => theme.color.hoverLink};
   }
 `;
-
-export default {
-  StyledCardDiv,
-  StyledTitleDiv,
-  StyledDescriptionDiv,
-  StyledPreviewImg,
-  StyledMoreLinkDiv,
-};

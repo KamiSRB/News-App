@@ -3,6 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { DISABLED_STORYBOOK_CONTROL } from '../../constants';
 import ArticlePreviewCard, { ArticlePreviewCardProps } from './ArticlePreviewCard';
 
 const imageSrc =
@@ -12,11 +13,7 @@ export default {
   title: 'Molecules/ArticlePreviewCard',
   component: ArticlePreviewCard,
   argTypes: {
-    onClick: {
-      table: {
-        disable: true,
-      },
-    },
+    onClick: DISABLED_STORYBOOK_CONTROL,
   },
 } as Meta;
 
