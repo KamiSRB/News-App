@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useCallback } from 'react';
 import { useTheme } from 'emotion-theming';
-import { Theme } from '../../types/Theme.types';
+import { Theme } from 'src/types/Theme.types';
 import { StyledHeaderButtonWrapperDiv } from './HeaderButton.styles';
 
 interface Props {

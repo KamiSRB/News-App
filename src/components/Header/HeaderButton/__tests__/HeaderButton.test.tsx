@@ -1,6 +1,6 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import renderTestElement from '../../../utils/renderTestComponent';
+import renderTestElement from '../../../../utils/renderTestComponent';
 import HeaderButton from '../HeaderButton';
 
 describe('HeaderButton component', () => {

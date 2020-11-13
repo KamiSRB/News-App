@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Theme } from '../../types/Theme.types';
+import { Theme } from 'src/types/Theme.types';
 
 interface StyledHeaderButtonWrapperDivProps {
   isActive: boolean;
@@ -7,6 +7,7 @@ interface StyledHeaderButtonWrapperDivProps {
 }
 
 export const StyledHeaderButtonWrapperDiv = styled.div<StyledHeaderButtonWrapperDivProps, Theme>`
+  display: inline-block;
   padding: 20px;
   height: 60px;
   box-sizing: border-box;
@@ -16,14 +17,17 @@ export const StyledHeaderButtonWrapperDiv = styled.div<StyledHeaderButtonWrapper
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${({ theme }) => theme.color.border};
+  vertical-align: top;
+  font-family: ${({ theme }) => theme.fontFamily.sansSerif};
 
   background-color: ${({ theme }) => theme.color.nav};
   ${({ isActive, theme }) =>
-    isActive ? `background-color: ${theme.color.active}; color: ${theme.color.activeLink}` : ''}
+    isActive ? `background-color: ${theme.color.active}; color: ${theme.color.activeLink};` : ''}
   ${({ isDisabled, theme }) =>
     isDisabled
       ? `cursor: not-allowed; background-color: ${theme.color.disabled};`
-      : `cursor: pointer; :hover { background-color: ${theme.color.hoverNav}; }`}
+      : `cursor: pointer; :hover { background-color: ${theme.color.hoverNav}; };`}
 `;
 
 export default {

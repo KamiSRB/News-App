@@ -3,6 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { DISABLED_STORYBOOK_CONTROL } from '../../../constants';
 import HeaderButton, { HeaderButtonProps } from './HeaderButton';
 
 export default {
@@ -12,16 +13,8 @@ export default {
     onClick: () => alert('Button clicked'),
   },
   argTypes: {
-    onClick: {
-      table: {
-        disable: true,
-      },
-    },
-    isDisabled: {
-      table: {
-        disable: true,
-      },
-    },
+    onClick: DISABLED_STORYBOOK_CONTROL,
+    isDisabled: DISABLED_STORYBOOK_CONTROL,
   },
 } as Meta;
 
