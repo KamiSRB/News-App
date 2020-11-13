@@ -1,5 +1,6 @@
 {
   "DivInitialApp-Text": "Initial app",
   "DivReadMore-Text": "More",
-  "LinkBackToList-Text": "Back to list"
+  "LinkBackToList-Text": "Back to list",
+  "InputSearch-Placeholder": "Search term..."
 }

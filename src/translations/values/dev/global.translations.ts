@@ -11,6 +11,10 @@ const globalTranslations = {
     key: 'LinkBackToList-Text',
     defaultValue: 'Back to list',
   },
+  InputSearchPlaceholder: {
+    key: 'InputSearch-Placeholder',
+    defaultValue: 'Search term...',
+  },
 } as const;
 
 export default globalTranslations;
