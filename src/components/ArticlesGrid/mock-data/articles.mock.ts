@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
+import { MOCK_ARTICLE_IMAGE } from '../../../constants';
 import { Article } from '../../../types/Article.types';
 
 const articleMock: Article = {
   id: '',
   title: 'Article title',
   description: 'Article title',
-  urlToImage:
-    'https://htecgroup.com/static/HTEC_SMMpreview_HOME-2ff9fbd8f5c082f2924d4a124a98a487.png',
+  urlToImage: MOCK_ARTICLE_IMAGE,
   content: '',
 };
 
