@@ -6,7 +6,7 @@ const theme: Theme = {
     border: '#000',
     disabled: '#ff6347',
     active: '#9c9c9c',
-    activeLink: 'white',
+    activeLink: '#fff',
     hoverNav: '#c7c7c7',
     nav: '#dddddd',
     background: '#fff',
