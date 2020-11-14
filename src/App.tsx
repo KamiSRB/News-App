@@ -5,6 +5,7 @@ import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import theme from './theme';
 import AppRouter from './AppRouter';
+import { NewsApplicationProvider } from './context/newsAppContext';
 
 const App: React.FC = () => {
   const StyledAppDiv = styled.div`
@@ -14,9 +15,11 @@ const App: React.FC = () => {
   return (
     <I18nextProvider i18n={i18n}>
       <ThemeProvider theme={theme}>
-        <StyledAppDiv className="App" data-testid="App">
-          <AppRouter />
-        </StyledAppDiv>
+        <NewsApplicationProvider>
+          <StyledAppDiv className="App" data-testid="App">
+            <AppRouter />
+          </StyledAppDiv>
+        </NewsApplicationProvider>
       </ThemeProvider>
     </I18nextProvider>
   );

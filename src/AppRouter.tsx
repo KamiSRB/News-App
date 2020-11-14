@@ -1,16 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import { NavItem } from './components/Header/Header.types';
-import countries from './mock-data/countries.mock';
+import { NewsApplicationContext } from './context/newsAppContext';
 import { Article, Categories, Category, Search, TopNews } from './pages';
 import useTranslate from './translations/hooks/useTranslate';
 import namespaces from './translations/namespaces';
 import navigationTranslations from './translations/values/dev/navigation.translation';
 
 const AppRouter: React.FC = () => {
+  const { countries, selectedCountry, changeCountry } = useContext(NewsApplicationContext);
   const translate = useTranslate(namespaces.navigation);
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   const navItems: NavItem[] = useMemo(
     () => [
@@ -27,7 +27,7 @@ const AppRouter: React.FC = () => {
         navItems={navItems}
         countries={countries}
         selectedCountry={selectedCountry}
-        onCountryChange={setSelectedCountry}
+        onCountryChange={changeCountry}
       />
 
       <Switch>
