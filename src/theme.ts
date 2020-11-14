@@ -12,8 +12,8 @@ const theme: Theme = {
     background: '#fff',
   },
   fontFamily: {
-    serif: 'Times New Roman", Times, serif',
-    sansSerif: 'Arial, Helvetica, sans-serif',
+    serif: 'Times New Roman,Times,serif',
+    sansSerif: 'Arial,Helvetica,sans-serif',
   },
 };
 
