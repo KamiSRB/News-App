@@ -9,8 +9,7 @@ export const StyledCarouselWrapperDiv = styled.div`
 
 export const StyledCarouselItemDiv = styled(animated.div)`
   position: absolute;
-  background-color: brown;
-  height: 200px;
+  overflow: hidden;
 `;
 
 export const StyledLeftArrowDiv = styled.div`
