@@ -1,9 +1,10 @@
+import { TOptions } from 'i18next';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import namespaces from '../namespaces';
 import { TranslateData } from '../translations.types';
 
-type TranslateFunction = (data: TranslateData) => string;
+type TranslateFunction = (data: TranslateData, params?: TOptions) => string;
 type Namespace = keyof typeof namespaces;
 
 /**
@@ -13,9 +14,11 @@ type Namespace = keyof typeof namespaces;
 const useTranslate = (ns: Namespace | Namespace[]): TranslateFunction => {
   const { t } = useTranslation(ns);
 
-  return useCallback((data: TranslateData) => t(data.key, { defaultValue: data.defaultValue }), [
-    t,
-  ]);
+  return useCallback(
+    (data: TranslateData, params?: TOptions) =>
+      t(data.key, { defaultValue: data.defaultValue, ...params }),
+    [t]
+  );
 };
 
 export default useTranslate;

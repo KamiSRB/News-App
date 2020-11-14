@@ -1,10 +1,11 @@
 import React, { createContext, PropsWithChildren, useState } from 'react';
+import { Country } from '../types/Country.types';
 import countries from '../mock-data/countries.mock';
 
 interface NewsApplicationContextState {
   countries: typeof countries;
-  selectedCountry: typeof countries[number];
-  changeCountry: (country: string) => void;
+  selectedCountry: Country;
+  changeCountry: (country: Country) => void;
 }
 
 const initialState: NewsApplicationContextState = {

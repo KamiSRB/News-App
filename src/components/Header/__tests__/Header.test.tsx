@@ -10,7 +10,7 @@ describe('Header component', () => {
       <Header
         navItems={navItems}
         countries={[]}
-        selectedCountry=""
+        selectedCountry={{ title: '', value: '' }}
         onCountryChange={() => undefined}
       />
     );
@@ -23,7 +23,7 @@ describe('Header component', () => {
       <Header
         navItems={navItems}
         countries={countries}
-        selectedCountry="US"
+        selectedCountry={{ title: '', value: '' }}
         onCountryChange={() => undefined}
       />
     );
@@ -38,7 +38,7 @@ describe('Header component', () => {
       <Header
         navItems={navItems}
         countries={countries}
-        selectedCountry="US"
+        selectedCountry={{ title: '', value: '' }}
         onCountryChange={onCountryChange}
       />
     );

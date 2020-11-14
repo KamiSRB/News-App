@@ -1,5 +1,6 @@
 {
   "NavItemTopNews-Title": "Top News",
   "NavItemCategories-Title": "Categories",
-  "NavItemSearch-Title": "Search"
+  "NavItemSearch-Title": "Search",
+  "SectionHeadingTextTopNews-Content": "Top news from {{country}}"
 }

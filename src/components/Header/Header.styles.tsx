@@ -15,6 +15,7 @@ export const StyledHeaderDiv = styled.div<Record<never, never>, Theme>`
   flex-wrap: wrap;
   box-sizing: border-box;
   border: ${({ theme }) => `solid 1px ${theme.color.border}`};
+  z-index: 999;
 `;
 
 export const StyledHeaderButtonGroupDiv = styled.div``;

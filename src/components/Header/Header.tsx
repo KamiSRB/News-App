@@ -5,12 +5,13 @@ import { useLocation } from 'react-router-dom';
 import { StyledHeaderDiv, StyledHeaderButtonGroupDiv, StyledLink } from './Header.styles';
 import HeaderButton from './HeaderButton';
 import { NavItem } from './Header.types';
+import { Country } from '../../types/Country.types';
 
 export interface HeaderProps {
   navItems?: NavItem[];
-  countries: string[];
-  selectedCountry: string;
-  onCountryChange: (country: string) => void;
+  countries: Country[];
+  selectedCountry: Country;
+  onCountryChange: (country: Country) => void;
   areCountriesDisabled?: boolean;
 }
 
@@ -24,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({
   const theme = useTheme() as Theme;
   const location = useLocation();
 
-  const handleCountryChange = useCallback((country: string) => () => onCountryChange(country), [
+  const handleCountryChange = useCallback((country: Country) => () => onCountryChange(country), [
     onCountryChange,
   ]);
 
@@ -44,13 +45,13 @@ const Header: React.FC<HeaderProps> = ({
 
       <StyledHeaderButtonGroupDiv>
         {countries.map((country) => (
-          <span data-testid="country-btn" key={country}>
+          <span data-testid="country-btn" key={country.value}>
             <HeaderButton
               isActive={country === selectedCountry}
               isDisabled={areCountriesDisabled}
               onClick={handleCountryChange(country)}
             >
-              {country.toUpperCase()}
+              {country.value.toUpperCase()}
             </HeaderButton>
           </span>
         ))}

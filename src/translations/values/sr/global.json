@@ -2,5 +2,6 @@
   "DivInitialApp-Text": "Inicijalna aplikacija",
   "DivReadMore-Text": "Pročitaj više",
   "LinkBackToList-Text": "Nazad na listu",
-  "InputSearch-Placeholder": "Pretraživani pojam..."
+  "InputSearch-Placeholder": "Pretraživani pojam...",
+  "SectionHeadingTextTopNews-Content": "Istaknute vest za regiju {{country}}"
 }

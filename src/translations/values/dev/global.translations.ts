@@ -15,6 +15,10 @@ const globalTranslations = {
     key: 'InputSearch-Placeholder',
     defaultValue: 'Search term...',
   },
+  SectionHeadingTextTopNewsContent: {
+    key: 'SectionHeadingTextTopNews-Content',
+    defaultValue: 'Top news from {{country}}',
+  },
 } as const;
 
 export default globalTranslations;
