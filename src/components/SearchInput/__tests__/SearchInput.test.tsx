@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import renderTestElement from '../../../utils/renderTestComponent';
@@ -10,7 +10,7 @@ describe('SearchInput component', () => {
     expect(queryByTestId('search-input')).not.toBeNull();
   });
 
-  it('fires a change event on input change', () => {
+  it('fires a debounced change event on input change', async () => {
     const onChange = jest.fn();
     const { queryByTestId } = renderTestElement(<SearchInput onChange={onChange} />);
 
@@ -25,7 +25,12 @@ describe('SearchInput component', () => {
       }
     });
 
-    expect(onChange).toBeCalledTimes(4);
-    expect(onChange).toBeCalledWith('test');
+    await waitFor(() => {
+      expect(onChange).toBeCalledTimes(1);
+      expect(onChange).not.toBeCalledWith('t');
+      expect(onChange).not.toBeCalledWith('te');
+      expect(onChange).not.toBeCalledWith('tes');
+      expect(onChange).toBeCalledWith('test');
+    });
   });
 });

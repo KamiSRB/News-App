@@ -18,4 +18,9 @@ export default {
 
 const Template: Story<SearchInputProps> = ({ onChange }) => <SearchInput onChange={onChange} />;
 
-export const Example = Template.bind({});
+export const SimpleExample = Template.bind({});
+
+export const DebouncedOnSecond = Template.bind({});
+DebouncedOnSecond.args = {
+  debounceInterval: 1000,
+};
