@@ -35,7 +35,10 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
           )
           // TODO: Style icons better
         }
-        <StyledExpandCollapseDiv onClick={() => setIsOpen((opened) => !opened)}>
+        <StyledExpandCollapseDiv
+          onClick={() => setIsOpen((opened) => !opened)}
+          data-testid="accordion-expand-icon"
+        >
           {isOpen ? '-' : '+'}
         </StyledExpandCollapseDiv>
       </StyledAccordionHeadingDiv>
@@ -43,6 +46,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
         isOpen={isOpen}
         height={contentRef.current?.clientHeight ?? 0}
         theme={theme}
+        data-testid="accordion-panel"
       >
         <StyledAccordionContentDiv ref={contentRef}>{children}</StyledAccordionContentDiv>
       </StyledAccordionContentWrapperDiv>
