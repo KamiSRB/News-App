@@ -55,7 +55,7 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
 
     if (lastIndex === items.length - 1) {
       if (onLoadNext) {
-        onLoadNext();
+        onLoadNext(); // TODO: Debounce this later
         setFirstIndex((index) => index + 1);
         setLastIndex((index) => index + 1);
       }

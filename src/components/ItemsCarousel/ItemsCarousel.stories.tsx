@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-alert */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import styled from '@emotion/styled';
-import ItemsCarousel from './ItemsCarousel';
+import { DISABLED_STORYBOOK_CONTROL } from '../../constants';
+import ItemsCarousel, { ItemsCarouselProps } from './ItemsCarousel';
 
 const StyledNodeDiv = styled.div`
   height: 200px;
@@ -24,8 +26,48 @@ const items = [
 export default {
   title: 'Molecules/ItemsCarousel',
   component: ItemsCarousel,
-} as Meta;
+  // args: {
+  //   items,
+  // },
+  argTypes: {
+    itemsToDisplay: DISABLED_STORYBOOK_CONTROL,
+    onLoadNext: DISABLED_STORYBOOK_CONTROL,
+    items: DISABLED_STORYBOOK_CONTROL,
+    areAllItemsLoaded: DISABLED_STORYBOOK_CONTROL,
+  },
+} as Meta<ItemsCarouselProps>;
 
-const Template: Story = () => <ItemsCarousel items={items} onLoadNext={() => alert('loaaad')} />;
+// const Template: Story<ItemsCarouselProps> = (props) => <ItemsCarousel {...props} />;
 
-export const Example = Template.bind({});
+// export const WithoutLoadingNewItems = Template.bind({});
+// WithoutLoadingNewItems.args = {
+//   areAllItemsLoaded: true,
+// };
+
+export const WithoutLoadingNewIteme: Story = () => (
+  <ItemsCarousel items={items} areAllItemsLoaded />
+);
+
+// export const WithLoadingNewItems = Template.bind({});
+// WithLoadingNewItems.args = {
+//   onLoadNext: () => alert('load next'),
+// };
+
+export const WithLoadingNewItems: Story = () => (
+  <ItemsCarousel items={items} onLoadNext={() => alert('load next')} />
+);
+
+// export const WithFewerItems = Template.bind({});
+// WithFewerItems.args = {
+//   areAllItemsLoaded: false,
+//   itemsToDisplay: 3,
+// };
+// WithFewerItems.argTypes = {
+//   itemsToDisplay: {
+//     table: {
+//       disable: false,
+//     },
+//   },
+// };
+
+export const WithFewerItems: Story = () => <ItemsCarousel items={items} itemsToDisplay={3} />;
