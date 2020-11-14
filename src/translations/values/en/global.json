@@ -3,5 +3,6 @@
   "DivReadMore-Text": "More",
   "LinkBackToList-Text": "Back to list",
   "InputSearch-Placeholder": "Search term...",
-  "SectionHeadingTextTopNews-Content": "Top news from {{country}}"
+  "SectionHeadingTextTopNews-Content": "Top news from {{country}}",
+  "SectionHeadingTextCategory-Content": "Top {{category}} news from {{country}}"
 }

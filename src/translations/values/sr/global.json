@@ -3,5 +3,6 @@
   "DivReadMore-Text": "Pročitaj više",
   "LinkBackToList-Text": "Nazad na listu",
   "InputSearch-Placeholder": "Pretraživani pojam...",
-  "SectionHeadingTextTopNews-Content": "Istaknute vest za regiju {{country}}"
+  "SectionHeadingTextTopNews-Content": "Istaknute vesti za regiju {{country}}",
+  "SectionHeadingTextCategory-Content": "Istaknute vesti iz oblasti {{category}} za regiju {{country}}"
 }
