@@ -20,7 +20,7 @@ const TopNews: React.FC = () => {
           country: selectedCountry.title,
         })}:`}
       />
-      <ArticlesGrid articles={articles} />
+      <ArticlesGrid articles={articles} articlesDetailRoute="/news" />
     </StyledNewsPageWrapper>
   );
 };

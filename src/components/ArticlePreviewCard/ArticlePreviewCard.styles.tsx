@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
+import { Link } from 'react-router-dom';
 import { Theme } from '../../types/Theme.types';
 
 export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
@@ -65,6 +66,19 @@ export const StyledPreviewImg = styled.img`
 `;
 
 export const StyledMoreLinkDiv = styled.div<Record<never, never>, Theme>`
+  text-align: right;
+  flex-basis: 10%;
+  flex-shrink: 0%;
+  padding-top: 10px;
+
+  :hover {
+    color: ${({ theme }) => theme.color.hoverLink};
+  }
+`;
+
+export const StyledMoreLink = styled(Link)<Record<never, never>, Theme>`
+  color: ${({ theme }) => theme.color.border};
+  text-decoration: none;
   text-align: right;
   flex-basis: 10%;
   flex-shrink: 0%;

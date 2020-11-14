@@ -36,4 +36,22 @@ describe('ArticlePreviewCard component', () => {
 
     expect(onClick).toBeCalledTimes(1);
   });
+
+  it('uses a article when provided', () => {
+    const articleRouter = '/article-route';
+
+    const { queryByTestId, history } = renderTestElement(
+      <ArticlePreviewCard title="" description="" articleRoute={articleRouter} />
+    );
+
+    const articleLink = queryByTestId('article-link');
+    expect(articleLink).not.toBeNull();
+    expect(articleLink).toHaveAttribute('href', articleRouter);
+
+    act(() => {
+      articleLink?.click();
+    });
+
+    expect(history.location.pathname).toBe(articleRouter);
+  });
 });

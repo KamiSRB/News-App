@@ -1,13 +1,15 @@
 import React from 'react';
+import { generatePath } from 'react-router';
 import { Article } from '../../types/Article.types';
 import ArticlePreviewCard from '../ArticlePreviewCard';
 import { StyledArticleWrapperDiv, StyledGridDiv } from './ArticlesGrid.styles';
 
 export interface ArticlesGridProp {
   articles: Article[];
+  articlesDetailRoute?: string;
 }
 
-const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles }) => {
+const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles, articlesDetailRoute }) => {
   return (
     <StyledGridDiv>
       {articles.map((article) => (
@@ -16,6 +18,11 @@ const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles }) => {
             title={article.title}
             description={article.description}
             imageSrc={article.urlToImage}
+            articleRoute={
+              articlesDetailRoute
+                ? `${generatePath(`${articlesDetailRoute}/:articleId`, { articleId: article.id })}`
+                : undefined
+            }
           />
         </StyledArticleWrapperDiv>
       ))}

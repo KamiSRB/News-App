@@ -14,6 +14,7 @@ export default {
   },
   argTypes: {
     onClick: DISABLED_STORYBOOK_CONTROL,
+    articleRoute: DISABLED_STORYBOOK_CONTROL,
   },
 } as Meta;
 
@@ -39,4 +40,9 @@ ArticleWithLongDescription.args = {
   title: 'Title',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris justo lectus, viverra ultrices cursus in, vehicula ut quam. Vivamus tristique felis interdum luctus vestibulum.',
+};
+
+export const ArticleWithRoute = Template.bind({});
+ArticleWithRoute.args = {
+  articleRoute: 'article-route',
 };
