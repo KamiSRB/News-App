@@ -95,7 +95,12 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
 
   return (
     <StyledCarouselWrapperDiv ref={containerRef}>
-      <StyledLeftArrowDiv onClick={handleLeftArrowClick}>&lt;</StyledLeftArrowDiv>
+      {
+        // TODO: style the arrow handlers better
+      }
+      <StyledLeftArrowDiv onClick={handleLeftArrowClick} data-testid="left-arrow">
+        &lt;
+      </StyledLeftArrowDiv>
       {
         // Delta is not part of the interface, ignore typescript warnings here for now
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -108,12 +113,16 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
               transform: delta.interpolate((x: number) => `translate3d(${x}px,0,0)`),
               ...rest,
             }}
+            data-testid="carousel-item"
+            id={item.id}
           >
             {item.node}
           </StyledCarouselItemDiv>
         ))
       }
-      <StyledRightArrowDiv onClick={handleRightArrowClick}>&gt;</StyledRightArrowDiv>
+      <StyledRightArrowDiv onClick={handleRightArrowClick} data-testid="right-arrow">
+        &gt;
+      </StyledRightArrowDiv>
     </StyledCarouselWrapperDiv>
   );
 };

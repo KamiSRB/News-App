@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import ResizeObserver from 'resize-observer-polyfill'; // Could be lazy loaded only when needed and split up in the separate chunk
 
 type ComponentSize = Pick<DOMRect, 'width' | 'height'>;
 
@@ -16,13 +17,9 @@ const useComponentSize = (refObject?: React.RefObject<HTMLElement>): ComponentSi
   const ref = refObject || innerRef;
 
   const [size, setSize] = useState<ComponentSize>(initialSize);
-  const [observer, setObserver] = useState();
+  const [observer, setObserver] = useState<ResizeObserver>();
 
   useEffect(() => {
-    // ResizeObserver could be polyfilled. For now, we will just ignore the typescript warning
-    // We are not interested to the
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     setObserver(new ResizeObserver(([entry]) => setSize(entry.contentRect as ComponentSize)));
   }, []);
 
@@ -30,14 +27,10 @@ const useComponentSize = (refObject?: React.RefObject<HTMLElement>): ComponentSi
     if (!observer) return () => undefined;
 
     if (ref.current) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       observer.observe(ref.current);
     }
 
     return () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       observer.disconnect();
     };
   }, [ref, observer]);
