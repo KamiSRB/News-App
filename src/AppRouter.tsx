@@ -3,6 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import { NavItem } from './components/Header/Header.types';
 import countries from './mock-data/countries.mock';
+import { Article, Categories, Category, Search, TopNews } from './pages';
 import useTranslate from './translations/hooks/useTranslate';
 import namespaces from './translations/namespaces';
 import navigationTranslations from './translations/values/dev/navigation.translation';
@@ -30,13 +31,13 @@ const AppRouter: React.FC = () => {
       />
 
       <Switch>
-        <Route path="/news" component={React.Fragment} exact />
-        <Route path="/news/:articleId" component={React.Fragment} exact />
+        <Route path="/news" component={TopNews} exact />
+        <Route path="/news/:articleId" component={Article} exact />
         <Redirect from="/news" to="/news" />
-        <Route path="/categories" component={React.Fragment} exact />
-        <Route path="/categories/:categoryId" component={React.Fragment} exact />
+        <Route path="/categories" component={Categories} exact />
+        <Route path="/categories/:categoryId" component={Category} exact />
         <Redirect from="categories" to="/categories" />
-        <Route path="/search" component={React.Fragment} exact />
+        <Route path="/search" component={Search} exact />
         <Redirect from="/search" to="/search" />
         <Redirect from="*" to="/news" />
       </Switch>
