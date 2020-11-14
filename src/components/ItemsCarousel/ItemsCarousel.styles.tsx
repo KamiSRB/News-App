@@ -1,17 +1,14 @@
 import styled from '@emotion/styled';
+import { animated } from 'react-spring';
 
 export const StyledCarouselWrapperDiv = styled.div`
   width: 100%;
   background-color: gray;
-  display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
 `;
 
-export const StyledCarouselItemDiv = styled.div`
-  flex-basis: 15%;
-  flex-shrink: 0;
-  flex-grow: 0;
+export const StyledCarouselItemDiv = styled(animated.div)`
+  position: absolute;
   background-color: brown;
   height: 200px;
 `;
