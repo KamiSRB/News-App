@@ -2,7 +2,7 @@ import React from 'react';
 import renderTestElement from '../../../utils/renderTestComponent';
 import Header from '../Header';
 import navItems from '../mock-data/navItems.mock';
-import countries from '../mock-data/countries.mock';
+import countries from '../../../mock-data/countries.mock';
 
 describe('Header component', () => {
   it('renders all navigation items', () => {

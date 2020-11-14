@@ -1,7 +1,7 @@
 import { useTheme } from 'emotion-theming';
 import React, { useCallback } from 'react';
 import { Theme } from 'src/types/Theme.types';
-import { useRouteMatch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { StyledHeaderDiv, StyledHeaderButtonGroupDiv, StyledLink } from './Header.styles';
 import HeaderButton from './HeaderButton';
 import { NavItem } from './Header.types';
@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({
   areCountriesDisabled = false,
 }) => {
   const theme = useTheme() as Theme;
-  const match = useRouteMatch();
+  const location = useLocation();
 
   const handleCountryChange = useCallback((country: string) => () => onCountryChange(country), [
     onCountryChange,
@@ -34,7 +34,9 @@ const Header: React.FC<HeaderProps> = ({
         {navItems?.map((item) => (
           <span data-testid="nav-item" key={item.route}>
             <StyledLink to={item.route}>
-              <HeaderButton isActive={match.path === item.route}>{item.title}</HeaderButton>
+              <HeaderButton isActive={location.pathname.includes(item.route)}>
+                {item.title}
+              </HeaderButton>
             </StyledLink>
           </span>
         ))}

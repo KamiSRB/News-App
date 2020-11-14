@@ -6,7 +6,7 @@ import { Meta, Story } from '@storybook/react';
 import { DISABLED_STORYBOOK_CONTROL } from '../../constants';
 import Header, { HeaderProps } from './Header';
 import navItems from './mock-data/navItems.mock';
-import countries from './mock-data/countries.mock';
+import countries from '../../mock-data/countries.mock';
 
 export default {
   title: 'Organisms/Header',
