@@ -3,17 +3,21 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import { NavItem } from './components/Header/Header.types';
 import countries from './mock-data/countries.mock';
+import useTranslate from './translations/hooks/useTranslate';
+import namespaces from './translations/namespaces';
+import navigationTranslations from './translations/values/dev/navigation.translation';
 
 const AppRouter: React.FC = () => {
+  const translate = useTranslate(namespaces.navigation);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   const navItems: NavItem[] = useMemo(
     () => [
-      { title: 'Top News', route: '/news' },
-      { title: 'Categories', route: '/categories' },
-      { title: 'Search', route: '/search' },
+      { title: translate(navigationTranslations.NavItemTopNewsTitle), route: '/news' },
+      { title: translate(navigationTranslations.NavItemCategoriesTitle), route: '/categories' },
+      { title: translate(navigationTranslations.NavItemSearchTitle), route: '/search' },
     ],
-    []
+    [translate]
   );
 
   return (
