@@ -7,13 +7,18 @@ export const StyledAccordionWrapperDiv = styled.div`
   width: 100%;
 `;
 
-export const StyledAccordionHeadingDiv = styled.div<Record<never, never>, Theme>`
+interface StyledAccordionHeadingDivProps {
+  isOpen: boolean;
+}
+
+export const StyledAccordionHeadingDiv = styled.div<StyledAccordionHeadingDivProps, Theme>`
   width: 100%;
   height: 1.75em;
   font-size: 1.6em;
   padding: 0.37em;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.color.hoverNav};
+  border-radius: ${({ isOpen }) => (isOpen ? '5px 5px 0px 0px' : '5px')};
 `;
 
 export const StyledAccordionTitleLink = styled(Link)<Record<never, never>, Theme>`
@@ -39,6 +44,8 @@ export const StyledAccordionContentWrapperDiv = styled.div<
   background-color: ${({ theme }) => theme.color.nav};
   height: ${({ isOpen, height }) => (isOpen ? `${height}px` : 0)};
   transition: ease 1s;
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  border-radius: 0px 0px 5px 5px;
 `;
 
 export const StyledAccordionContentDiv = styled.div`

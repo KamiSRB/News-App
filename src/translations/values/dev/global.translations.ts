@@ -27,6 +27,10 @@ const globalTranslations = {
     key: 'SectionHeadingTextSarch-Content',
     defaultValue: 'Search top news from {{country}}',
   },
+  SectionHeadingTextCategoriesContent: {
+    key: 'SectionHeadingTextCategories-Content',
+    defaultValue: 'Top {{count}} news by categories from {{country}}',
+  },
 } as const;
 
 export default globalTranslations;

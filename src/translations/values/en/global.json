@@ -5,5 +5,6 @@
   "InputSearch-Placeholder": "Search term...",
   "SectionHeadingTextTopNews-Content": "Top news from {{country}}",
   "SectionHeadingTextCategory-Content": "Top {{category}} news from {{country}}",
-  "SectionHeadingTextSearch-Content": "Search top news from {{country}}"
+  "SectionHeadingTextSearch-Content": "Search top news from {{country}}",
+  "SectionHeadingTextCategories-Content": "Top {{count}} news by categories from {{country}}"
 }

@@ -10,7 +10,7 @@ import { StyledNewsPageWrapper } from '../TopNews/TopNews.styles';
 const Category: React.FC = () => {
   const translate = useTranslate(namespaces.global);
   const { selectedCountry } = useContext(NewsApplicationContext);
-  const categoryName = categories[0];
+  const categoryName = categories[0].title;
 
   return (
     <StyledNewsPageWrapper>
@@ -20,7 +20,7 @@ const Category: React.FC = () => {
       <SectionHeadingText
         content={`${translate(globalTranslations.SectionHeadingTextCategoryContent, {
           country: selectedCountry.title,
-          category: categoryName,
+          category: categoryName.toLowerCase(),
         })}:`}
       />
       <ArticlesGrid articles={articles} articlesDetailRoute="/news" />

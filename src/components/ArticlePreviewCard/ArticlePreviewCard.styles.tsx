@@ -15,6 +15,7 @@ export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
   font-family: ${({ theme }) => theme.fontFamily.sansSerif};
   cursor: pointer;
   overflow: hidden;
+  background-color: ${({ theme }) => theme.color.background};
 
   :hover {
     box-shadow: ${({ theme }) => `1px 1px 10px ${transparentize(0.8)(theme.color.border)}`};

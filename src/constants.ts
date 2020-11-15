@@ -15,3 +15,6 @@ export const screenBreakpoints = {
   large: 992,
   extra: 1200,
 };
+
+// Application settings
+export const NEWS_PER_CATEGORY_COUNT = 5;

@@ -1,5 +1,6 @@
 import { useTheme } from 'emotion-theming';
 import React, { PropsWithChildren, useRef, useState } from 'react';
+import useComponentSize from '../../hooks/useComponentSize';
 import { Theme } from '../../types/Theme.types';
 import {
   StyledAccordionContentDiv,
@@ -24,9 +25,11 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const theme = useTheme() as Theme;
 
+  const { height: contentHeight } = useComponentSize(contentRef);
+
   return (
     <StyledAccordionWrapperDiv>
-      <StyledAccordionHeadingDiv theme={theme}>
+      <StyledAccordionHeadingDiv theme={theme} isOpen={isOpen}>
         {
           titleLinkRoute ? (
             <StyledAccordionTitleLink to={titleLinkRoute}>{title}</StyledAccordionTitleLink>
@@ -44,7 +47,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
       </StyledAccordionHeadingDiv>
       <StyledAccordionContentWrapperDiv
         isOpen={isOpen}
-        height={contentRef.current?.clientHeight ?? 0}
+        height={contentHeight}
         theme={theme}
         data-testid="accordion-panel"
       >
