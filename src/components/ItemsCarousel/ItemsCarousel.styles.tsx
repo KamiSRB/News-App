@@ -32,5 +32,8 @@ export const StyledLeftArrowDiv = styled(StyledArrowDiv)`
 
 export const StyledRightArrowDiv = styled(StyledArrowDiv)`
   float: right;
-  cursor: pointer;
+`;
+
+export const StyledLibraryCarouselItemWrapper = styled.div`
+  padding: 10px;
 `;

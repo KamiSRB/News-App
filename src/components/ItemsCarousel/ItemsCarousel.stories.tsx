@@ -5,7 +5,8 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { DISABLED_STORYBOOK_CONTROL } from '../../constants';
 import ItemsCarousel, { ItemsCarouselProps } from './ItemsCarousel';
-import items from './mock-data/items.mock';
+import ItemsCarouselWithLibrary from './ItemsCarouselWithLibrary';
+import items, { StyledNodeDiv } from './mock-data/items.mock';
 
 export default {
   title: 'Molecules/ItemsCarousel',
@@ -63,3 +64,5 @@ export const WithLoadingNewItems: Story = () => (
 // };
 
 export const WithFewerItems: Story = () => <ItemsCarousel items={items} itemsToDisplay={3} />;
+
+export const UsingLibrary: Story = () => <ItemsCarouselWithLibrary items={items} />;

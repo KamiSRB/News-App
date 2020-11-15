@@ -7,7 +7,7 @@ export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 300px;
+  max-width: 300px;
   height: 300px;
   border: ${({ theme }) => `solid 1px ${transparentize(0.6)(theme.color.border)}`};
   border-radius: 5%;
