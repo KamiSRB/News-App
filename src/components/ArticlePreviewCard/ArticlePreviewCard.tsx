@@ -41,10 +41,18 @@ const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({
       }
 
       if (articleRoute) {
-        history.push(articleRoute);
+        history.push(articleRoute, { parentRoute: history.location.pathname });
       }
     },
     [articleRoute, history, onClick]
+  );
+
+  const handleMoreLinkClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      event.stopPropagation();
+      if (onClick) onClick();
+    },
+    [onClick]
   );
 
   const readMoreText = `${translate(globalTranslations.DivReadMoreText)} >`;
@@ -57,9 +65,9 @@ const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({
       {articleRoute ? (
         <StyledMoreLink
           theme={theme}
-          to={articleRoute}
+          to={{ pathname: articleRoute, state: { parentRoute: history.location.pathname } }}
           data-testid="article-link"
-          onClick={onClick}
+          onClick={handleMoreLinkClick}
         >
           {readMoreText}
         </StyledMoreLink>

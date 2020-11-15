@@ -47,4 +47,16 @@ export const getArticle = (title: string): Promise<Article> =>
       });
   });
 
-export default { getTopNews };
+export const getArticlesForCategory = (country: string, category: string): Promise<Article[]> =>
+  new Promise((resolve, reject) => {
+    newsAxiosInstance
+      .get(TOP_HEADLINES_ROUTE, { params: { country, category } })
+      .then((response: AxiosResponse<NewsApiResponseData>) => {
+        const { data } = response;
+        validateResponseData(data, reject);
+
+        resolve(data.articles);
+      });
+  });
+
+export default { getTopNews, getArticle, getArticlesForCategory };

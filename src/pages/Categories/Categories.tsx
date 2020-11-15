@@ -1,5 +1,6 @@
 import { globalTranslations, namespaces, useTranslate } from '@translations';
 import React, { useContext, useMemo } from 'react';
+import { generatePath, useRouteMatch } from 'react-router';
 import SectionHeadingText from '../../components/SectionHeadingText';
 import Accordion from '../../components/Accordion';
 import ArticlePreviewCard from '../../components/ArticlePreviewCard';
@@ -18,6 +19,7 @@ import {
 const Categories: React.FC = () => {
   const translate = useTranslate(namespaces.global);
   const { selectedCountry } = useContext(NewsApplicationContext);
+  const match = useRouteMatch();
 
   const carouselItems: CarouselItem[] = useMemo(
     () =>
@@ -46,7 +48,12 @@ const Categories: React.FC = () => {
       <StyledAccordionsFrame>
         {categories.map((category) => (
           <StyledCategoryAccordionWraperDiv key={category.value}>
-            <Accordion title={category.title} titleLinkRoute={`/categories/${categories[0].value}`}>
+            <Accordion
+              title={category.title}
+              titleLinkRoute={generatePath(`${match?.path}/:categoryId`, {
+                categoryId: category.value,
+              })}
+            >
               <ItemsCarousel items={carouselItems} itemsToDisplay={NEWS_PER_CATEGORY_COUNT} />
             </Accordion>
           </StyledCategoryAccordionWraperDiv>

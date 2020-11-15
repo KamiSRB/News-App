@@ -2,6 +2,7 @@ import React from 'react';
 import { useTheme } from 'emotion-theming';
 import { Theme } from 'src/types/Theme.types';
 import { namespaces, useTranslate, globalTranslations } from '@translations';
+import { useHistory } from 'react-router';
 import {
   StyledArticleImg,
   StyledArticleWrapperDiv,
@@ -26,6 +27,10 @@ const Article: React.FC<ArticleProps> = ({
 }) => {
   const translate = useTranslate(namespaces.global);
   const theme = useTheme() as Theme;
+  const history = useHistory();
+
+  const backRoute =
+    backLinkRoute ?? (history.location.state as Record<string, string>)?.parentRoute;
 
   return (
     <StyledArticleWrapperDiv theme={theme}>
@@ -37,8 +42,8 @@ const Article: React.FC<ArticleProps> = ({
         <p>{content}</p>
       </StyledContentDiv>
 
-      {backLinkRoute && (
-        <StyledBackLink to={backLinkRoute} data-testid="back-link">
+      {backRoute && (
+        <StyledBackLink to={backRoute} data-testid="back-link">
           &lt; {translate(globalTranslations.LinkBackToListText)}
         </StyledBackLink>
       )}
