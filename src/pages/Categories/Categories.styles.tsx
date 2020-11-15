@@ -11,3 +11,7 @@ export const StyledAccordionsFrame = styled.div`
 export const StyledCategoryAccordionWraperDiv = styled.div`
   margin-bottom: 5px;
 `;
+
+export const StyledItemsCarouselWrapperDiv = styled.div`
+  padding: 20px 0px;
+`;

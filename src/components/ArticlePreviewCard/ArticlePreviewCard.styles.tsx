@@ -10,7 +10,7 @@ export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
   max-width: 300px;
   height: 300px;
   border: ${({ theme }) => `solid 1px ${transparentize(0.6)(theme.color.border)}`};
-  border-radius: 5%;
+  border-radius: 5px;
   padding: 20px;
   font-family: ${({ theme }) => theme.fontFamily.sansSerif};
   cursor: pointer;
