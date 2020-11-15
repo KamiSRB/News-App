@@ -4,5 +4,6 @@
   "LinkBackToList-Text": "Back to list",
   "InputSearch-Placeholder": "Search term...",
   "SectionHeadingTextTopNews-Content": "Top news from {{country}}",
-  "SectionHeadingTextCategory-Content": "Top {{category}} news from {{country}}"
+  "SectionHeadingTextCategory-Content": "Top {{category}} news from {{country}}",
+  "SectionHeadingTextSearch-Content": "Search top news from {{country}}"
 }

@@ -4,5 +4,6 @@
   "LinkBackToList-Text": "Nazad na listu",
   "InputSearch-Placeholder": "Pretraživani pojam...",
   "SectionHeadingTextTopNews-Content": "Istaknute vesti za regiju {{country}}",
-  "SectionHeadingTextCategory-Content": "Istaknute vesti iz oblasti {{category}} za regiju {{country}}"
+  "SectionHeadingTextCategory-Content": "Istaknute vesti iz oblasti {{category}} za regiju {{country}}",
+  "SectionHeadingTextSearch-Content": "Search top news from {{country}}"
 }
