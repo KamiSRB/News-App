@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-const StyledNodeDiv = styled.div`
+export const StyledNodeDiv = styled.div`
   height: 200px;
-  width: 500px;
+  max-width: 500px;
   background-color: gray;
 `;
 

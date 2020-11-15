@@ -9,6 +9,8 @@ import {
 } from './ItemsCarousel.styles';
 import { CarouselItem } from './ItemsCarousel.types';
 
+const arrowWidth = 10;
+
 export interface ItemsCarouselProps {
   itemsToDisplay?: number;
   onLoadNext?: () => void;
@@ -25,6 +27,9 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   const [firstIndex, setFirstIndex] = useState(0);
   const [lastIndex, setLastIndex] = useState(Math.min(items.length - 1, itemsToDisplay - 1));
 
+  const canMoveLeft = firstIndex !== 0;
+  const canMoveRight = lastIndex !== items.length - 1 || !areAllItemsLoaded;
+
   // Calculate needed sizes and positions for transitions
   const containerRef = useRef<HTMLDivElement>(null);
   const { width: containerWidth } = useComponentSize(containerRef);
@@ -38,8 +43,12 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   const itemsSpacing = useMemo(() => containerWidth * 0.02, [containerWidth]);
 
   const itemWidth = useMemo(
-    () => (containerWidth - (displayedItemsCount + 1) * itemsSpacing) / displayedItemsCount,
-    [containerWidth, displayedItemsCount, itemsSpacing]
+    () =>
+      (containerWidth -
+        (+canMoveLeft + +canMoveRight) * arrowWidth -
+        (displayedItemsCount + 1) * itemsSpacing) /
+      displayedItemsCount,
+    [canMoveLeft, canMoveRight, containerWidth, displayedItemsCount, itemsSpacing]
   );
 
   // Handle moving
@@ -51,7 +60,7 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   };
 
   const handleRightArrowClick = () => {
-    if (lastIndex === items.length - 1 && areAllItemsLoaded) return;
+    if (!canMoveRight) return;
 
     if (lastIndex === items.length - 1) {
       if (onLoadNext) {
@@ -73,7 +82,7 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   ]);
 
   // Prepare transitions
-  let width = 0;
+  let width = canMoveLeft ? arrowWidth : 0;
   const offset = itemWidth + itemsSpacing;
 
   const transitions = useTransition(
@@ -97,10 +106,12 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
     <StyledCarouselWrapperDiv ref={containerRef}>
       {
         // TODO: style the arrow handlers better
+        canMoveLeft && (
+          <StyledLeftArrowDiv onClick={handleLeftArrowClick} data-testid="left-arrow">
+            ⮜
+          </StyledLeftArrowDiv>
+        )
       }
-      <StyledLeftArrowDiv onClick={handleLeftArrowClick} data-testid="left-arrow">
-        &lt;
-      </StyledLeftArrowDiv>
       {
         // Delta is not part of the interface, ignore typescript warnings here for now
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -121,7 +132,7 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
         ))
       }
       <StyledRightArrowDiv onClick={handleRightArrowClick} data-testid="right-arrow">
-        &gt;
+        ⮞
       </StyledRightArrowDiv>
     </StyledCarouselWrapperDiv>
   );

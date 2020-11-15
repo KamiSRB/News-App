@@ -38,7 +38,15 @@ export const WithoutLoadingNewIteme: Story = () => (
 // };
 
 export const WithLoadingNewItems: Story = () => (
-  <ItemsCarousel items={items} onLoadNext={() => alert('load next')} />
+  <ItemsCarousel
+    items={items}
+    onLoadNext={() => {
+      items.push({
+        id: (items.length + 1).toString(),
+        node: <StyledNodeDiv>{items.length + 1}</StyledNodeDiv>,
+      });
+    }}
+  />
 );
 
 // export const WithFewerItems = Template.bind({});
