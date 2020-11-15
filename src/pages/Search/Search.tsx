@@ -1,27 +1,29 @@
 import { globalTranslations, namespaces, useTranslate } from '@translations';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { getArticlesByQuery } from '@clients';
 import SearchInput from '../../components/SearchInput';
 import ArticlesGrid from '../../components/ArticlesGrid';
-import articles from '../../components/ArticlesGrid/mock-data/articles.mock';
 import SectionHeadingText from '../../components/SectionHeadingText';
 import { NewsApplicationContext } from '../../context/newsAppContext';
 import { StyledNewsPageWrapper } from '../TopNews/TopNews.styles';
 import { StyledSearchInputWrapper } from './Search.styles';
+import { Article } from '../../types/Article.types';
+import { SEARCH_DEBOUNCE_MILISECONDS } from '../../constants';
 
 const Search: React.FC = () => {
-  const [foundArticles, setFoundArticles] = useState(articles);
+  const [input, setInput] = useState<string>('');
+  const [foundArticles, setFoundArticles] = useState<Article[]>([]);
   const translate = useTranslate(namespaces.global);
   const { selectedCountry } = useContext(NewsApplicationContext);
 
-  const handleSearchInputChange = useCallback((input: string) => {
-    const updateArticlesList = articles.filter((article) =>
-      `${article.title} ${article.description} ${article.content}`
-        .toLowerCase()
-        .includes(input.toLowerCase())
-    );
+  const handleSearchInputChange = useCallback(setInput, [setInput]);
 
-    setFoundArticles(updateArticlesList);
-  }, []);
+  // Fetch the results on changes
+  useEffect(() => {
+    getArticlesByQuery(selectedCountry.value, input)
+      .then(setFoundArticles)
+      .catch(() => setFoundArticles([]));
+  }, [input, selectedCountry.value]);
 
   return (
     <StyledNewsPageWrapper>
@@ -35,7 +37,10 @@ const Search: React.FC = () => {
       />
 
       <StyledSearchInputWrapper>
-        <SearchInput onChange={handleSearchInputChange} />
+        <SearchInput
+          onChange={handleSearchInputChange}
+          debounceInterval={SEARCH_DEBOUNCE_MILISECONDS}
+        />
       </StyledSearchInputWrapper>
 
       <ArticlesGrid articles={foundArticles} articlesDetailRoute="/news" />

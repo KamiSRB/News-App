@@ -37,7 +37,7 @@ const ArticlePage: React.FC = () => {
       title={article.title}
       imageSrc={article.urlToImage}
       description={article.description}
-      content={article.content}
+      content={article.content || ''}
     />
   ) : (
     <></>

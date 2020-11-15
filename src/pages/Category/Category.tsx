@@ -1,7 +1,7 @@
 import { globalTranslations, namespaces, useTranslate } from '@translations';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { getArticlesForCategory } from '@clients';
+import { getArticlesByCategory } from '@clients';
 import categories from '../../mock-data/categories.mock';
 import ArticlesGrid from '../../components/ArticlesGrid';
 import SectionHeadingText from '../../components/SectionHeadingText';
@@ -34,7 +34,7 @@ const CategoryPage: React.FC = () => {
   useEffect(() => {
     if (!category) return;
 
-    getArticlesForCategory(selectedCountry.value, category.value)
+    getArticlesByCategory(selectedCountry.value, category.value)
       .then(setArticles)
       .catch(() => history.push('/categories'));
   }, [category, history, selectedCountry.value]);

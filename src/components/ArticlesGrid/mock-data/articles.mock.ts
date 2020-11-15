@@ -1,24 +1,218 @@
-import { MOCK_ARTICLE_IMAGE } from '../../../constants';
 import { Article } from '../../../types/Article.types';
 
-const articleMock: Article = {
-  title: 'Article title',
-  description: 'Article title',
-  urlToImage: MOCK_ARTICLE_IMAGE,
-  content: '',
-  url: '',
-};
-
 const articles: Article[] = [
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
-  { ...articleMock, url: `article-${Math.random()}` },
+  {
+    title:
+      'Biden Faces Early Test With Immigration and Homeland Security After Trump - The New York Times',
+    description:
+      'The Department of Homeland Security was molded in President Trump’s image, and not just on immigration policy. President-elect Joseph R. Biden Jr. will have work to do to remake it.',
+    url: 'https://www.nytimes.com/2020/11/15/us/politics/biden-immigration-homeland-security.html',
+    urlToImage:
+      'https://static01.nyt.com/images/2020/11/13/us/politics/15dc-dhs2/merlin_179254878_1e3f072b-b4a4-4ea8-bc10-6f166a22b20b-facebookJumbo.jpg',
+    content:
+      'Mr. Warricks co-author, Caitlin Durkovich, is on Mr. Bidens official transition team.\r\nThe volunteer team has emphasized that change will come not from a drastic restructuring but from personnel. Of … [+1598 chars]',
+  },
+  {
+    title: "Trump tweets that Biden 'won' – but repeats baseless vote fraud claim - The Guardian",
+    description:
+      'The Democratic challenger scored a 306-232 electoral college victory but president writes ‘he won because the election was rigged’',
+    url: 'https://amp.theguardian.comus-news/2020/nov/15/donald-trump-joe-biden-won-tweet',
+    urlToImage:
+      'https://i.guim.co.uk/img/media/fb00661ab6db7e7fd82a0af9a8cbc25d9fedbb88/0_167_3500_2101/master/3500.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=8693d8a8bf9807d9872e7dca5a45213c',
+    content:
+      'On Sunday morning, Donald Trump tweeted about Joe Biden.\r\nHe won, he wrote.\r\nBut it was not the formal concession of the US presidential election which Trump has refused to give, despite every major … [+1930 chars]',
+  },
+  {
+    title:
+      "Hurricane Iota to bring 'potentially catastrophic' winds, dangerous storm surge to Central America - Fox News",
+    description:
+      'Hurricane Iota is expected to bring potentially catastrophic winds and life-threatening storm surge to Central America, according to the National Hurricane Center.',
+    url: 'https://www.foxnews.com/world/hurricane-iota-central-america',
+    urlToImage:
+      'https://static.foxnews.com/foxnews.com/content/uploads/2020/11/Nicaragua-Eta-AP.jpg',
+    content:
+      'Hurricane Iota is expected to bring "potentially catastrophic" winds and "life-threatening storm surge" to Central America, according to the National Hurricane Center.\r\nThe fast-forming hurricane is … [+1957 chars]',
+  },
+  {
+    title: 'Astronauts Prepare To Launch To Space Station Aboard SpaceX Rocket - NPR',
+    description:
+      "Four astronauts will fly to the International Space Station aboard SpaceX's Dragon crew capsule. The mission will be the first of what NASA hopes are many.",
+    url:
+      'https://www.npr.org/2020/11/15/934185926/astronauts-prepare-to-launch-to-space-station-aboard-spacex-rocket',
+    urlToImage:
+      'https://media.npr.org/assets/img/2020/11/13/crew-1-rocket-on-pad_wide-f5f54673b5d7851e095c508fb196199898a2f3b9.jpg?s=1400',
+    content:
+      'Four astronauts are scheduled to head to the International Space Station aboard a SpaceX Dragon capsule.\r\nNASA/Joel Kowsky/(NASA/Joel Kowsky)\r\nFour astronauts are set to lift off Sunday night from th… [+2412 chars]',
+  },
+  {
+    title: 'House Democrats At Odds After 2020 Election Losses - NPR',
+    description:
+      'House Democrats are on track to begin next year with the slimmest majority in decades, now members on the progressive left and party moderates must decide whose policies should govern.',
+    url:
+      'https://www.npr.org/2020/11/15/934586955/house-democrats-dissect-what-went-wrong-and-how-to-rebound-from-losses',
+    urlToImage:
+      'https://media.npr.org/assets/img/2020/11/13/ap_20318621968038_wide-e1b03af20dfccf358ba33bea386f8c85ce24843c.jpg?s=1400',
+    content:
+      "House Speaker Nancy Pelosi, D-Calif., downplayed losses in this year's elections, pointing out that Democrats made historic gains in 2018.\r\nJ. Scott Applewhite/AP\r\nHouse Democrats started this month … [+9136 chars]",
+  },
+  {
+    title: "3 Renewable Energy Stocks That Don't Care About the Electoral College - Motley Fool",
+    description:
+      'The Electoral College is a hot topic this week, but these three renewable-energy stocks will do well no matter what happens when it meets.',
+    url: 'https://www.fool.com/investing/2020/11/15/3-renewable-energy-stocks-electoral-college/',
+    urlToImage: 'https://g.foolcdn.com/editorial/images/600656/solar-farm-at-dusk.jpg',
+    content:
+      "The election continues to be a hot topic for news viewers and investors. And the Electoral College could be more newsworthy than it's been in a while when it meets in January. But there are renewable… [+5674 chars]",
+  },
+  {
+    title:
+      "Donations to Buffalo hospital 'a true testament' to how community feels about Josh Allen - NFL.com",
+    description:
+      'Josh Allen spends some of his time away from the game at Oishei Children’s Hospital and has developed a relationship with those in the building.  So, when the Buffalo Bills quarterback mentioned that his grandmother recently passed away, it stirred up fee',
+    url:
+      'https://www.nfl.com/news/donations-to-buffalo-hospital-a-true-testament-to-how-community-feels-about-josh',
+    urlToImage:
+      'https://static.www.nfl.com/image/private/t_editorial_landscape_12_desktop/league/t1yz5bnlfgu36laqfopn',
+    content:
+      "Josh Allen spends some of his time away from the football field at Oishei Children's Hospital, and he's developed a relationship with patients, staffers and administrators alike.\r\nWhen the Buffalo Bi… [+2590 chars]",
+  },
+  {
+    title: "Forces from Ethiopia's Tigray region bombed Eritrean capital, Tigray leader says - CNN",
+    description:
+      "Rebellious forces from Ethiopia's Tigray region fired rockets at the airport in Eritrea's capital Asmara on Saturday evening, their leader said on Sunday, confirming earlier reports of a major escalation in a 12-day old conflict in Ethiopia.",
+    url: 'https://www.cnn.com/2020/11/15/africa/eritrea-tigray-bombing-intl/index.html',
+    urlToImage:
+      'https://cdn.cnn.com/cnnnext/dam/assets/201115053202-eritrea-tigray-bombing-1115-map-super-tease.jpg',
+    content: '',
+  },
+  {
+    title: "RCEP: Asia-Pacific countries form world's largest trading bloc - BBC News",
+    description:
+      'The Regional Comprehensive Economic Partnership covers nearly a third of the global economy.',
+    url: 'https://www.bbc.com/news/world-asia-54949260',
+    urlToImage:
+      'https://ichef.bbci.co.uk/news/1024/branded_news/12660/production/_115506357_hi064348753.jpg',
+    content:
+      "image captionFifteen countries have formed the new trading bloc\r\nFifteen countries have formed the world's largest trading bloc, covering nearly a third of the global economy.\r\nThe Regional Comprehen… [+1715 chars]",
+  },
+  {
+    title: 'Leonid meteor shower will shoot fireballs across the sky this week - CNN',
+    description:
+      "Fireballs and smaller meteors will streak across the sky on November 16 and 17. That's when the Leonid meteor shower peaks.",
+    url: 'https://www.cnn.com/2020/11/15/world/leonid-meteor-shower-2020-scn/index.html',
+    urlToImage:
+      'https://cdn.cnn.com/cnnnext/dam/assets/201111171253-02-leonid-meteor-shower-restricted-super-tease.jpg',
+    content: '',
+  },
+  {
+    title:
+      'Jim Harbaugh understands there is no quick fix for Michigan football. Urban Meyer could have told him - Detroit Free Press',
+    description:
+      'The Michigan Wolverines fell to 1-3 following a 49-11 defeat to the Wisconsin Badgers on Saturday in college football.',
+    url:
+      'https://www.freep.com/story/sports/college/university-michigan/wolverines/2020/11/15/jim-harbaugh-michigan-football-urban-meyer/6302098002/',
+    urlToImage:
+      'https://www.gannett-cdn.com/presto/2020/11/15/PDTF/60d2afb5-be6c-4eb8-8f0b-9fd77121d69d-wolverines_111420_kd865.jpg?crop=1916,1078,x0,y0&width=1600&height=800&fit=bounds',
+    content:
+      'A bitterly disappointed Jim Harbaugh reacts to Michigan\'s 49-11 loss to Wisconsin at Michigan Stadium, says "it falls on me" on Nov. 14, 2020.\r\nDetroit Free Press\r\nHours before Michigan arrived at th… [+4752 chars]',
+  },
+  {
+    title:
+      "'Nobody has ever done that to me': Kell Brook well beaten by Terence Crawford - The Guardian",
+    description:
+      'Terence Crawford retained his welterweight title after a devastating display of power in his fourth-round win over British fighter Kell Brook',
+    url:
+      'https://www.theguardian.com/sport/2020/nov/15/kell-brook-terence-crawford-boxing-katie-taylor',
+    urlToImage:
+      'https://i.guim.co.uk/img/media/21af89280db3aa60df2b1a346c784d1f36c6e6ba/292_87_2801_1681/master/2801.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=a8dcfc588639b174937da473f3520b62',
+    content:
+      'Terence Crawford started slow and finished fast, stopping Kell Brook with a barrage of punches in the fourth round Saturday night to retain his welterweight title.\r\nCrawford remained unbeaten and kep… [+3598 chars]',
+  },
+  {
+    title: 'Coronavirus vaccine scientist: ‘We could have a normal winter next year’ - POLITICO.eu',
+    description:
+      'BioNTech co-founder Uğur Şahin says he didn’t get any help from US Operation Warp Speed, as claimed by Donald Trump.',
+    url:
+      'http://www.politico.eu/article/coronavirus-vaccine-scientist-we-could-have-a-normal-winter-next-year/',
+    urlToImage:
+      'https://www.politico.eu/wp-content/uploads/2020/11/GettyImages-1229617998-1200x628.jpg',
+    content:
+      'One of the scientists behind the coronavirus vaccine that has been found to be 90 percent effective said that "if everything continues to go well ... we could have a normal winter next year."\r\nBioNTe… [+2688 chars]',
+  },
+  {
+    title:
+      'Prince Charles’ concern for Harry mirrored Palace’s fears about Duke of Windsor - Express',
+    description:
+      "PRINCE CHARLES' worries about his son Prince Harry serving on the frontline echoed the same fears the monarchy - and the Government - had about Edward VIII serving in World War One, almost a century before.",
+    url:
+      'https://www.express.co.uk/news/royal/1360350/prince-charles-news-prince-harry-king-george-v-edward-viii-army-megxit-abdication-spt',
+    urlToImage: 'https://cdn.images.express.co.uk/img/dynamic/106/750x445/1360350.jpg',
+    content: '',
+  },
+  {
+    title: 'Trump Family Business Faces Post-Election Reckoning - The Wall Street Journal',
+    description:
+      'Property sales may shrink the Trump Organization as debts come due and legal woes persist',
+    url:
+      'https://www.wsj.com/articles/trump-family-business-faces-post-election-reckoning-11605436201',
+    urlToImage: 'https://images.wsj.net/im-255810/social',
+    content:
+      'When President Trump leaves the White House in January, he will face some of the deepest financial and legal challenges in his family business empire in decades.\r\nNo matter what he focuses on after t… [+332 chars]',
+  },
+  {
+    title:
+      "Princess Diana debuts on Netflix's 'The Crown,' as BBC's 1995 interview comes under fire - NBC News",
+    description:
+      'Princess Diana appears in "The Crown" a Netflix series as it follows her marriage to Prince Charles and entry into the Royal Family. A BBC interview has also come under renewed scrutiny.',
+    url:
+      'https://www.nbcnews.com/news/world/princess-diana-debuts-netflix-s-crown-bbc-s-1995-interview-n1247837',
+    urlToImage:
+      'https://media4.s-nbcnews.com/j/newscms/2020_46/3428193/201113-2x1-charles-diana-fact-check-ew-1030a_e597e2bf4b5b9eb5b55f399798f8f0af.nbcnews-fp-1200-630.jpg',
+    content:
+      'LONDON More than two decades after her death in a car-crash shocked the world, Britain\'s Princess Diana is back in the headlines.\r\nAs season four of the hit series "The Crown" debuts this weekend fea… [+4862 chars]',
+  },
+  {
+    title: 'Potentially Damaging Winds Possible Sunday in the Chicago Area - NBC Chicago',
+    description:
+      'A cold front is set to pass through the Chicago area overnight, bringing potentially damaging winds with gusts of up to 50 miles per hour, according to the…',
+    url:
+      'https://www.nbcchicago.com/news/local/potentially-damaging-winds-possible-sunday-in-the-chicago-area/2372019/',
+    urlToImage: 'https://media.nbcchicago.com/2019/09/72978013-1.jpg?resize=1200%2C675',
+    content:
+      'A cold front is set to pass through the Chicago area overnight, bringing potentially damaging winds with gusts of up to 50 miles per hour, according to the National Weather Service. \r\nA wind advisory… [+611 chars]',
+  },
+  {
+    title:
+      'In ‘A Promised Land,’ Barack Obama Thinks — and Thinks Some More — Over His First Term - The New York Times',
+    description:
+      'The former president recounts his political ascent and offers close-up views of the major issues he faced during his first years in the White House.',
+    url: 'https://www.nytimes.com/2020/11/15/books/review-barack-obama-promised-land-memoir.html',
+    urlToImage:
+      'https://static01.nyt.com/images/2020/11/15/business/15obamabook-print2/15obamabook-print2-facebookJumbo-v4.jpg',
+    content:
+      'The most audacious thing about Barack Obamas new memoir, A Promised Land, is the beaming portrait on its cover: There he is, the 44th president, looking so serenely confident that its as if the book … [+1650 chars]',
+  },
+  {
+    title: 'Trump supporters morning protests turn into violent clashes - WTOP',
+    description:
+      'Several thousand supporters of President Donald Trump in Washington protested election results and then hailed Trump’s passing motorcade before nighttime clashes with counterdemonstrators sparked fistfights, at least one stabbing and at least 20 arrests.',
+    url:
+      'http://wtop.com/local/2020/11/trump-supporters-morning-protests-turn-into-violent-clashes/',
+    urlToImage:
+      'https://wtop.com/wp-content/uploads/2020/11/2020_Election_Protests_Washington_31760.jpg',
+    content:
+      'WASHINGTON (AP) Several thousand supporters of President Donald Trump in Washington protested election results and then hailed Trump’s passing motorcade before nighttime clashes with counterdemonstra… [+4842 chars]',
+  },
+  {
+    title: "Philippines' typhoon deaths rise as worst floods in 45 years hit north - Yahoo News",
+    description:
+      'The death toll from the deadliest cyclone to hit the Philippines this year has climbed to 67, while many areas remained submerged in a northern region hit by...',
+    url: 'https://news.yahoo.com/death-toll-years-deadliest-typhoon-035605236.html',
+    urlToImage:
+      'https://s.yimg.com/uu/api/res/1.2/4hupiS9OCPFrfsV2cNl0Yg--~B/aD01MzM7dz04MDA7c209MTthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en-US/reuters.com/9b96e352d8ba4205194d50b8c80da30d',
+    content:
+      'MANILA (Reuters) - The death toll from the deadliest cyclone to hit the Philippines this year has climbed to 67, while many areas remained submerged in a northern region hit by the worst flooding in … [+1711 chars]',
+  },
 ];
 
 export default articles;

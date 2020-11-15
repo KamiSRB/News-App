@@ -108,7 +108,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^@translations(.*)$": "<rootDir>/src/translations$1"
+      "^@translations(.*)$": "<rootDir>/src/translations$1",
+      "^@clients(.*)$": "<rootDir>/src/clients$1"
     }
   }
 }
