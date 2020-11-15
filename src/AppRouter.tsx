@@ -32,7 +32,7 @@ const AppRouter: React.FC = () => {
 
       <Switch>
         <Route path="/news" component={TopNews} exact />
-        <Route path="/news/:originalUrl" component={Article} exact />
+        <Route path="/news/:title" component={Article} exact />
         <Redirect from="/news" to="/news" />
         <Route path="/categories" component={Categories} exact />
         <Route path="/categories/:categoryId" component={Category} exact />

@@ -1,27 +1,50 @@
 import { AxiosResponse } from 'axios';
 import { Article } from 'src/types/Article.types';
-import newAxiosInstance from './newAxiosInstance';
+import newsAxiosInstance from './newsAxiosInstance';
+
+const TOP_HEADLINES_ROUTE = '/top-headlines';
 
 interface NewsApiResponseData {
   status: 'ok' | 'error';
   code?: string;
+  totalResults: number;
   articles: Article[];
 }
 
+const validateResponseData = (
+  data: NewsApiResponseData,
+  rejectCallback: (reason?: Error) => void
+) => {
+  if (data.status === 'error') {
+    rejectCallback(Error(data.code));
+  }
+};
+
 export const getTopNews = (country: string): Promise<Article[]> =>
   new Promise((resolve, reject) => {
-    newAxiosInstance
-      .get('/top-headlines', { params: { country } })
+    newsAxiosInstance
+      .get(TOP_HEADLINES_ROUTE, { params: { country } })
       .then((repsonse: AxiosResponse<NewsApiResponseData>) => {
         const { data } = repsonse;
-
-        if (data.status === 'error') {
-          reject(data.code);
-        }
+        validateResponseData(data, reject);
 
         resolve(data.articles);
       })
       .catch((error) => reject(error.response));
+  });
+
+export const getArticle = (title: string): Promise<Article> =>
+  new Promise((resolve, reject) => {
+    newsAxiosInstance
+      .get(TOP_HEADLINES_ROUTE, { params: { q: title } })
+      .then((response: AxiosResponse<NewsApiResponseData>) => {
+        const { data } = response;
+        validateResponseData(data, reject);
+
+        if (!data.totalResults || !data.articles.length) reject(Error('Not found'));
+
+        resolve(data.articles[0]);
+      });
   });
 
 export default { getTopNews };

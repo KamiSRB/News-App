@@ -55,7 +55,12 @@ const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({
       <StyledPreviewImg src={imageSrc} alt="" data-testid="article-preview-img" theme={theme} />
       <StyledDescriptionDiv theme={theme}>{description}</StyledDescriptionDiv>
       {articleRoute ? (
-        <StyledMoreLink theme={theme} to={articleRoute} data-testid="article-link">
+        <StyledMoreLink
+          theme={theme}
+          to={articleRoute}
+          data-testid="article-link"
+          onClick={onClick}
+        >
           {readMoreText}
         </StyledMoreLink>
       ) : (

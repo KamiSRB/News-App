@@ -9,7 +9,7 @@ import { getTopNews } from '../../clients';
 
 const TopNews: React.FC = () => {
   const translate = useTranslate(namespaces.global);
-  const { selectedCountry } = useContext(NewsApplicationContext);
+  const { selectedCountry, setSelectedArticle } = useContext(NewsApplicationContext);
 
   const [articles, setArticles] = useState<Article[]>([]);
 
@@ -17,9 +17,7 @@ const TopNews: React.FC = () => {
   // Could be optimized usin some caching mechanism (React Query, Apollo ....)
   useEffect(() => {
     getTopNews(selectedCountry.value)
-      .then((data: Article[]) => {
-        setArticles(data);
-      })
+      .then(setArticles)
       .catch(() => undefined);
   }, [selectedCountry.value]);
 
@@ -33,7 +31,11 @@ const TopNews: React.FC = () => {
           country: selectedCountry.title,
         })}:`}
       />
-      <ArticlesGrid articles={articles} articlesDetailRoute="/news" />
+      <ArticlesGrid
+        articles={articles}
+        articlesDetailRoute="/news"
+        onArticleClick={setSelectedArticle}
+      />
     </StyledNewsPageWrapper>
   );
 };

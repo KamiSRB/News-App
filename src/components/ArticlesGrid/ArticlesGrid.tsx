@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { generatePath } from 'react-router';
 import { Article } from '../../types/Article.types';
 import ArticlePreviewCard from '../ArticlePreviewCard';
@@ -7,9 +7,23 @@ import { StyledArticleWrapperDiv, StyledGridDiv } from './ArticlesGrid.styles';
 export interface ArticlesGridProp {
   articles: Article[];
   articlesDetailRoute?: string;
+  onArticleClick?: (article: Article) => void;
 }
 
-const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles, articlesDetailRoute }) => {
+const ArticlesGrid: React.FC<ArticlesGridProp> = ({
+  articles,
+  articlesDetailRoute,
+  onArticleClick,
+}) => {
+  const handleArticleClick = useCallback(
+    (article: Article) => () => {
+      if (onArticleClick) {
+        onArticleClick(article);
+      }
+    },
+    [onArticleClick]
+  );
+
   return (
     <StyledGridDiv>
       {articles.map((article) => (
@@ -18,10 +32,11 @@ const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles, articlesDetailRout
             title={article.title}
             description={article.description}
             imageSrc={article.urlToImage}
+            onClick={handleArticleClick(article)}
             articleRoute={
               articlesDetailRoute
-                ? `${generatePath(`${articlesDetailRoute}/:originalUrl`, {
-                    originalUrl: article.url,
+                ? `${generatePath(`${articlesDetailRoute}/:title`, {
+                    title: article.title,
                   })}`
                 : undefined
             }
