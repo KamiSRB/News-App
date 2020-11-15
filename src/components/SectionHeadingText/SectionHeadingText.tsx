@@ -21,4 +21,4 @@ const SectionHeadingText: React.FC<SectionHeadingTextProps> = ({
   );
 };
 
-export default SectionHeadingText;
+export default React.memo(SectionHeadingText);

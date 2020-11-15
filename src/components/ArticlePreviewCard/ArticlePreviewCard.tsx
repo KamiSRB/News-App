@@ -67,4 +67,4 @@ const ArticlePreviewCard: React.FC<ArticlePreviewCardProps> = ({
   );
 };
 
-export default ArticlePreviewCard;
+export default React.memo(ArticlePreviewCard);

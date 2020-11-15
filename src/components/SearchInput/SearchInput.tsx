@@ -32,4 +32,4 @@ const SearchInput: React.FC<SearchInputProps> = ({ onChange, debounceInterval = 
   );
 };
 
-export default SearchInput;
+export default React.memo(SearchInput);

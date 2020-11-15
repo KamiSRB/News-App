@@ -35,4 +35,4 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
   );
 };
 
-export default HeaderButton;
+export default React.memo(HeaderButton);

@@ -127,4 +127,4 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   );
 };
 
-export default ItemsCarousel;
+export default React.memo(ItemsCarousel);

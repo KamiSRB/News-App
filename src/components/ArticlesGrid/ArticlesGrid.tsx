@@ -30,4 +30,4 @@ const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles, articlesDetailRout
   );
 };
 
-export default ArticlesGrid;
+export default React.memo(ArticlesGrid);

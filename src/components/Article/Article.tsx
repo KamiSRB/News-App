@@ -46,4 +46,4 @@ const Article: React.FC<ArticleProps> = ({
   );
 };
 
-export default Article;
+export default React.memo(Article);

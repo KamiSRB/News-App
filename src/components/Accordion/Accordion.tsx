@@ -54,4 +54,4 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({
   );
 };
 
-export default Accordion;
+export default React.memo(Accordion);
