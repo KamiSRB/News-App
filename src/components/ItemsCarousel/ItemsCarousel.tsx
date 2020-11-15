@@ -1,15 +1,15 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { useTransition } from 'react-spring';
+import { useTheme } from 'emotion-theming';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Theme } from '../../types/Theme.types';
 import useComponentSize from '../../hooks/useComponentSize';
 import {
+  StyledCarouselFrameDiv,
   StyledCarouselItemDiv,
   StyledCarouselWrapperDiv,
   StyledLeftArrowDiv,
   StyledRightArrowDiv,
 } from './ItemsCarousel.styles';
 import { CarouselItem } from './ItemsCarousel.types';
-
-const arrowWidth = 10;
 
 export interface ItemsCarouselProps {
   itemsToDisplay?: number;
@@ -24,15 +24,24 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   areAllItemsLoaded = false,
   onLoadNext,
 }) => {
+  const theme = useTheme() as Theme;
   const [firstIndex, setFirstIndex] = useState(0);
-  const [lastIndex, setLastIndex] = useState(Math.min(items.length - 1, itemsToDisplay - 1));
+  const [lastIndex, setLastIndex] = useState(0);
+
+  useEffect(() => {}, [lastIndex]);
 
   const canMoveLeft = firstIndex !== 0;
   const canMoveRight = lastIndex !== items.length - 1 || !areAllItemsLoaded;
 
-  // Calculate needed sizes and positions for transitions
+  // Calculate needed sizes and positions for transition
   const containerRef = useRef<HTMLDivElement>(null);
-  const { width: containerWidth } = useComponentSize(containerRef);
+  const { width: containerWidth, height: containerHeight } = useComponentSize(containerRef);
+
+  useEffect(() => {
+    if (lastIndex <= 0) {
+      setLastIndex(Math.min(items.length - 1, itemsToDisplay - 1));
+    }
+  }, [items.length, itemsToDisplay, lastIndex]);
 
   const displayedItemsCount = useMemo(() => Math.min(itemsToDisplay, lastIndex - firstIndex + 1), [
     firstIndex,
@@ -40,16 +49,15 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
     itemsToDisplay,
   ]);
 
+  const arrowsPosition = containerHeight / 2 - 15;
   const itemsSpacing = useMemo(() => containerWidth * 0.02, [containerWidth]);
 
   const itemWidth = useMemo(
-    () =>
-      (containerWidth -
-        (+canMoveLeft + +canMoveRight) * arrowWidth -
-        (displayedItemsCount + 1) * itemsSpacing) /
-      displayedItemsCount,
-    [canMoveLeft, canMoveRight, containerWidth, displayedItemsCount, itemsSpacing]
+    () => (containerWidth - (displayedItemsCount + 1) * itemsSpacing) / displayedItemsCount,
+    [containerWidth, displayedItemsCount, itemsSpacing]
   );
+
+  const offset = -1 * firstIndex * (itemWidth + itemsSpacing);
 
   // Handle moving
   const handleLeftArrowClick = () => {
@@ -64,7 +72,7 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
 
     if (lastIndex === items.length - 1) {
       if (onLoadNext) {
-        onLoadNext(); // TODO: Debounce this later
+        onLoadNext();
         setFirstIndex((index) => index + 1);
         setLastIndex((index) => index + 1);
       }
@@ -74,66 +82,50 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
     }
   };
 
-  // Prepare items
-  const displayedItems = useMemo(() => items.slice(firstIndex, firstIndex + itemsToDisplay), [
-    firstIndex,
-    items,
-    itemsToDisplay,
-  ]);
-
-  // Prepare transitions
-  let width = canMoveLeft ? arrowWidth : 0;
-  const offset = itemWidth + itemsSpacing;
-
-  const transitions = useTransition(
-    // eslint-disable-next-line no-return-assign
-    displayedItems.map((item) => ({ ...item, delta: (width += offset) - itemWidth })),
-    (item) => item.id,
-    {
-      from: { opacity: 0 },
-      leave: { opacity: 0 },
-      enter: ({ delta }) => ({ delta, width: itemWidth, opacity: 1 }),
-      update: ({ delta }) => ({
-        delta,
-        width: itemWidth,
-        opacity: 1,
-        transition: 'opacity 1s',
-      }),
-    }
-  );
-
   return (
-    <StyledCarouselWrapperDiv ref={containerRef}>
+    <StyledCarouselWrapperDiv>
       {
         // TODO: style the arrow handlers better
         canMoveLeft && (
-          <StyledLeftArrowDiv onClick={handleLeftArrowClick} data-testid="left-arrow">
+          <StyledLeftArrowDiv
+            onClick={handleLeftArrowClick}
+            data-testid="left-arrow"
+            top={arrowsPosition}
+            theme={theme}
+          >
             ⮜
           </StyledLeftArrowDiv>
         )
       }
-      {
-        // Delta is not part of the interface, ignore typescript warnings here for now
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        transitions.map(({ item, key, props: { delta, ...rest } }, index) => (
+
+      <StyledCarouselFrameDiv
+        style={{ display: 'flex', width: '100%', height: 'fit-content' }}
+        offset={offset}
+        ref={containerRef}
+        data-testid="carousel-frame"
+      >
+        {items.map((item) => (
           <StyledCarouselItemDiv
-            key={key}
-            style={{
-              zIndex: displayedItems.length - index,
-              transform: delta.interpolate((x: number) => `translate3d(${x}px,0,0)`),
-              ...rest,
-            }}
+            key={item.id}
+            width={itemWidth}
+            spacing={itemsSpacing}
             data-testid="carousel-item"
-            id={item.id}
           >
             {item.node}
           </StyledCarouselItemDiv>
-        ))
-      }
-      <StyledRightArrowDiv onClick={handleRightArrowClick} data-testid="right-arrow">
-        ⮞
-      </StyledRightArrowDiv>
+        ))}
+      </StyledCarouselFrameDiv>
+
+      {canMoveRight && (
+        <StyledRightArrowDiv
+          onClick={handleRightArrowClick}
+          data-testid="right-arrow"
+          top={arrowsPosition}
+          theme={theme}
+        >
+          ⮞
+        </StyledRightArrowDiv>
+      )}
     </StyledCarouselWrapperDiv>
   );
 };

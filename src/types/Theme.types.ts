@@ -8,6 +8,8 @@ export interface Theme {
     nav: string;
     hoverNav: string;
     background: string;
+    handler: string;
+    handlerContent: string;
   };
 
   fontFamily: {

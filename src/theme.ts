@@ -10,6 +10,8 @@ const theme: Theme = {
     hoverNav: '#c7c7c7',
     nav: '#dddddd',
     background: '#fff',
+    handler: 'darkslategray',
+    handlerContent: 'darkgray',
   },
   fontFamily: {
     serif: 'Times New Roman,Times,serif',
