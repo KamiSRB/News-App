@@ -22,13 +22,13 @@ const Categories: React.FC = () => {
   const carouselItems: CarouselItem[] = useMemo(
     () =>
       articles.map((article) => ({
-        id: article.id,
+        id: article.url,
         node: (
           <ArticlePreviewCard
             title={article.title}
             description={article.description}
             imageSrc={article.urlToImage}
-            articleRoute={`/news/${article.id}`}
+            articleRoute={`/news/${article.url}`}
           />
         ),
       })),

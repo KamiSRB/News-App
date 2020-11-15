@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@translations": ["src/translations"]
+      "@translations": ["src/translations"],
+      "@clients": ["src/clients"]
     }
   }
 }

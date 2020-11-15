@@ -13,14 +13,16 @@ const ArticlesGrid: React.FC<ArticlesGridProp> = ({ articles, articlesDetailRout
   return (
     <StyledGridDiv>
       {articles.map((article) => (
-        <StyledArticleWrapperDiv key={article.id} data-testid="article">
+        <StyledArticleWrapperDiv key={article.url} data-testid="article">
           <ArticlePreviewCard
             title={article.title}
             description={article.description}
             imageSrc={article.urlToImage}
             articleRoute={
               articlesDetailRoute
-                ? `${generatePath(`${articlesDetailRoute}/:articleId`, { articleId: article.id })}`
+                ? `${generatePath(`${articlesDetailRoute}/:originalUrl`, {
+                    originalUrl: article.url,
+                  })}`
                 : undefined
             }
           />

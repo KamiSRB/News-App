@@ -14,6 +14,7 @@ const rewireAliases = (configFile) => {
     ...config.resolve,
     alias: {
       '@translations': path.resolve(__dirname, 'src/translations/'),
+      '@clients': path.resolve(__dirname, 'src/clients/'),
     },
   };
 
