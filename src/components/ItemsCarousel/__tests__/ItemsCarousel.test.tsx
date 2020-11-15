@@ -14,12 +14,10 @@ describe('ItemsCarousel component', () => {
     expect(queryAllByTestId('carousel-item')).toHaveLength(items.length);
   });
 
-  it("displays passed number of items if they can't fit all", () => {
-    const { queryAllByTestId } = renderTestElement(
-      <ItemsCarousel items={items} itemsToDisplay={5} />
-    );
+  it('renders all the passed items to the DOM', () => {
+    const { queryAllByTestId } = renderTestElement(<ItemsCarousel items={items} />);
 
-    expect(queryAllByTestId('carousel-item')).toHaveLength(5);
+    expect(queryAllByTestId('carousel-item')).toHaveLength(items.length);
   });
 
   it('calls a onLoadNext callback', () => {
