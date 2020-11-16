@@ -7,7 +7,7 @@ export const StyledCardDiv = styled.div<Record<never, never>, Theme>`
   display: flex;
   flex-direction: column;
   position: relative;
-  max-width: 300px;
+  max-width: 350px;
   height: 300px;
   border: ${({ theme }) => `solid 1px ${transparentize(0.6)(theme.color.border)}`};
   border-radius: 5px;
@@ -34,7 +34,7 @@ export const StyledTitleDiv = styled.div<Record<never, never>, Theme>`
 `;
 
 export const StyledDescriptionDiv = styled.div<Record<never, never>, Theme>`
-  flex-basis: 20%;
+  flex-basis: 22%;
   flex-grow: 1;
   flex-shrink: 1;
   position: relative;

@@ -10,9 +10,10 @@ import { NEWS_PER_CATEGORY_COUNT } from '../../constants';
 import { NewsApplicationContext } from '../../context/newsAppContext';
 import categories from '../../mock-data/categories.mock';
 import {
-  StyledAccordionsFrame,
-  StyledCategoriesWrapper,
+  StyledAccordionsFrameDiv,
+  StyledCategoriesWrapperDiv,
   StyledCategoryAccordionWraperDiv,
+  StyledHeadingWrapperDiv,
   StyledItemsCarouselWrapperDiv,
 } from './Categories.styles';
 import { Article } from '../../types/Article.types';
@@ -64,17 +65,19 @@ const Categories: React.FC = () => {
   });
 
   return (
-    <StyledCategoriesWrapper>
+    <StyledCategoriesWrapperDiv>
       {
         // TODO: translate the country name too
       }
-      <SectionHeadingText
-        content={`${translate(globalTranslations.SectionHeadingTextCategoriesContent, {
-          count: NEWS_PER_CATEGORY_COUNT,
-          country: selectedCountry.title,
-        })}:`}
-      />
-      <StyledAccordionsFrame>
+      <StyledHeadingWrapperDiv>
+        <SectionHeadingText
+          content={`${translate(globalTranslations.SectionHeadingTextCategoriesContent, {
+            count: NEWS_PER_CATEGORY_COUNT,
+            country: selectedCountry.title,
+          })}:`}
+        />
+      </StyledHeadingWrapperDiv>
+      <StyledAccordionsFrameDiv>
         {categories.map((category) => (
           <StyledCategoryAccordionWraperDiv key={category.value}>
             <Accordion
@@ -94,8 +97,8 @@ const Categories: React.FC = () => {
             </Accordion>
           </StyledCategoryAccordionWraperDiv>
         ))}
-      </StyledAccordionsFrame>
-    </StyledCategoriesWrapper>
+      </StyledAccordionsFrameDiv>
+    </StyledCategoriesWrapperDiv>
   );
 };
 

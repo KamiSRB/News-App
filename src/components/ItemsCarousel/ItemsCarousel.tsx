@@ -1,5 +1,7 @@
 import { useTheme } from 'emotion-theming';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
+import { useDebouncedCallback } from 'use-debounce/lib';
 import { Theme } from '../../types/Theme.types';
 import useComponentSize from '../../hooks/useComponentSize';
 import {
@@ -10,6 +12,7 @@ import {
   StyledRightArrowDiv,
 } from './ItemsCarousel.styles';
 import { CarouselItem } from './ItemsCarousel.types';
+import { screenBreakpoints } from '../../constants';
 
 export interface ItemsCarouselProps {
   itemsToDisplay?: number;
@@ -25,28 +28,46 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   onLoadNext,
 }) => {
   const theme = useTheme() as Theme;
+  const [itemsCount, setItemsCount] = useState(itemsToDisplay);
   const [firstIndex, setFirstIndex] = useState(0);
   const [lastIndex, setLastIndex] = useState(0);
 
-  useEffect(() => {}, [lastIndex]);
+  const { callback: debouncedSetItemsCount } = useDebouncedCallback(setItemsCount, 200);
 
   const canMoveLeft = firstIndex !== 0;
   const canMoveRight = lastIndex !== items.length - 1 || !areAllItemsLoaded;
 
-  // Calculate needed sizes and positions for transition
   const containerRef = useRef<HTMLDivElement>(null);
   const { width: containerWidth, height: containerHeight } = useComponentSize(containerRef);
 
+  // Prepare data
   useEffect(() => {
     if (lastIndex <= 0) {
-      setLastIndex(Math.min(items.length - 1, itemsToDisplay - 1));
+      setLastIndex(Math.min(items.length - 1, itemsCount - 1));
     }
-  }, [items.length, itemsToDisplay, lastIndex]);
+  }, [items.length, itemsCount, lastIndex]);
 
-  const displayedItemsCount = useMemo(() => Math.min(itemsToDisplay, lastIndex - firstIndex + 1), [
+  useEffect(() => {
+    const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+      const windowWidth = entries[0].contentRect.width;
+
+      if (windowWidth < screenBreakpoints.small) {
+        debouncedSetItemsCount(Math.ceil(0.4 * itemsToDisplay));
+      } else if (windowWidth < screenBreakpoints.medium) {
+        debouncedSetItemsCount(Math.ceil(0.7 * itemsToDisplay));
+      }
+    });
+
+    observer.observe(window.document.body);
+
+    return () => observer.disconnect();
+  }, [itemsToDisplay, debouncedSetItemsCount]);
+
+  // Calculate needed sizes and positions for transition
+  const displayedItemsCount = useMemo(() => Math.min(itemsCount, lastIndex - firstIndex + 1), [
     firstIndex,
     lastIndex,
-    itemsToDisplay,
+    itemsCount,
   ]);
 
   const arrowsPosition = containerHeight / 2 - 15;

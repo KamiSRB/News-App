@@ -46,6 +46,8 @@ export const StyledAccordionContentWrapperDiv = styled.div<
   transition: ease 1s;
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   border-radius: 0px 0px 5px 5px;
+  border: ${({ theme }) => `solid 1px ${theme.color.active}`};
+  border-top: 0px;
 `;
 
 export const StyledAccordionContentDiv = styled.div`

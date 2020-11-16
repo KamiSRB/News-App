@@ -19,7 +19,7 @@ export const StyledArticleWrapperDiv = styled.div<Record<never, never>, Theme>`
 
   @media (min-width: ${screenBreakpoints.large}px) {
     width: calc(100% - 400px);
-    padding: 200px;
+    padding: 100px;
   }
 `;
 
