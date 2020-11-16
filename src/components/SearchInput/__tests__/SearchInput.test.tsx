@@ -33,4 +33,12 @@ describe('SearchInput component', () => {
       expect(onChange).toBeCalledWith('test');
     });
   });
+
+  it('displays a placeholder if it is passed through the props', () => {
+    const { queryByPlaceholderText } = renderTestElement(
+      <SearchInput placeholder="test placeholder" onChange={() => undefined} />
+    );
+
+    expect(queryByPlaceholderText('test placeholder')).not.toBeNull();
+  });
 });

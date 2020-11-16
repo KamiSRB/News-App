@@ -69,14 +69,22 @@ const ArticlesGrid: React.FC<ArticlesGridProp> = ({
         ))}
       </StyledGridDiv>
       {isNavigationVisible && (
-        <StyledNavigationDiv>
+        <StyledNavigationDiv data-testid="pages-navigation">
           {!isFirstPage && (
-            <StyledLeftArrowDiv onClick={onLoadPreviousPage} theme={theme}>
+            <StyledLeftArrowDiv
+              onClick={onLoadPreviousPage}
+              theme={theme}
+              data-testid="previous-page-arrow"
+            >
               &lt; Previous
             </StyledLeftArrowDiv>
           )}
           {!isLastPage && (
-            <StyledRightArrowDiv onClick={onLoadNextPage} theme={theme}>
+            <StyledRightArrowDiv
+              onClick={onLoadNextPage}
+              theme={theme}
+              data-testid="next-page-arrow"
+            >
               Next &gt;
             </StyledRightArrowDiv>
           )}
