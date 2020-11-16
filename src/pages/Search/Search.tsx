@@ -1,6 +1,7 @@
 import { globalTranslations, namespaces, useTranslate } from '@translations';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { getArticlesByQuery } from '@clients';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import SearchInput from '../../components/SearchInput';
 import ArticlesGrid from '../../components/ArticlesGrid';
 import SectionHeadingText from '../../components/SectionHeadingText';
@@ -11,19 +12,35 @@ import { Article } from '../../types/Article.types';
 import { SEARCH_DEBOUNCE_MILISECONDS } from '../../constants';
 
 const Search: React.FC = () => {
-  const [input, setInput] = useState<string>('');
+  const [query, setQuery] = useState<string>('');
   const [foundArticles, setFoundArticles] = useState<Article[]>([]);
   const translate = useTranslate(namespaces.global);
   const { selectedCountry } = useContext(NewsApplicationContext);
+  const history = useHistory();
+  const match = useRouteMatch();
+  const { search } = useLocation();
 
-  const handleSearchInputChange = useCallback(setInput, [setInput]);
+  // Update the URL query parameter on input change
+  const handleSearchInputChange = useCallback(
+    (input: string) => {
+      history.push(`${match.path}?q=${input}`);
+    },
+    [history, match.path]
+  );
 
-  // Fetch the results on changes
+  // Set query using the URL
   useEffect(() => {
-    getArticlesByQuery(selectedCountry.value, input)
+    const searchQuery = new URLSearchParams(search).get('q');
+
+    if (searchQuery) setQuery(decodeURIComponent(searchQuery));
+  }, [search]);
+
+  // Fetch/refetch results on query/country change
+  useEffect(() => {
+    getArticlesByQuery(selectedCountry.value, query)
       .then(setFoundArticles)
       .catch(() => setFoundArticles([]));
-  }, [input, selectedCountry.value]);
+  }, [query, selectedCountry.value]);
 
   return (
     <StyledNewsPageWrapper>
