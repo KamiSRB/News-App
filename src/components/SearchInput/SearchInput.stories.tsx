@@ -16,11 +16,18 @@ export default {
   },
 } as Meta<SearchInputProps>;
 
-const Template: Story<SearchInputProps> = ({ onChange }) => <SearchInput onChange={onChange} />;
+const Template: Story<SearchInputProps> = ({ onChange, placeholder }) => (
+  <SearchInput onChange={onChange} placeholder={placeholder} />
+);
 
 export const SimpleExample = Template.bind({});
 
 export const DebouncedOnSecond = Template.bind({});
 DebouncedOnSecond.args = {
   debounceInterval: 1000,
+};
+
+export const WithPlaceholder = Template.bind({});
+WithPlaceholder.args = {
+  placeholder: 'Your placeholder goes here',
 };

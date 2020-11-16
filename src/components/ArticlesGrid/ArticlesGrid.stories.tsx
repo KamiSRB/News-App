@@ -12,12 +12,22 @@ export default {
   component: ArticlesGrid,
   args: {
     articles,
+    onLoadNextPage: () => alert('Load next page'),
+    onLoadPreviousPage: () => alert('Load previous page'),
   },
   argTypes: {
     articles: DISABLED_STORYBOOK_CONTROL,
+    onLoadNextPage: DISABLED_STORYBOOK_CONTROL,
+    onLoadPreviousPage: DISABLED_STORYBOOK_CONTROL,
   },
 } as Meta<ArticlesGridProp>;
 
 const Template: Story<ArticlesGridProp> = (props) => <ArticlesGrid {...props} />;
 
 export const Grid = Template.bind({});
+
+export const WithPagesNavigation = Template.bind({});
+WithPagesNavigation.args = {
+  isFirstPage: false,
+  isLastPage: false,
+};
