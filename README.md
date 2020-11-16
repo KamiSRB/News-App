@@ -105,6 +105,8 @@ Please run tests before pushing your changes to the remote repository.
 yarn start
 ```
 
+> **WARNING**: If the maximum number of daily requests to the API is reached, change the `REACT_APP_USE_MOCK_DATA` variable in environment variables to `true` to load mocked data. For development, you can change it in the [.env.development](.env.development) file.
+
 #### Run the production build
 
 ```bash
