@@ -31,6 +31,7 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
   const [itemsCount, setItemsCount] = useState(itemsToDisplay);
   const [firstIndex, setFirstIndex] = useState(0);
   const [lastIndex, setLastIndex] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(window.document.body.clientWidth);
 
   const { callback: debouncedSetItemsCount } = useDebouncedCallback(setItemsCount, 200);
 
@@ -49,19 +50,26 @@ const ItemsCarousel: React.FC<ItemsCarouselProps> = ({
 
   useEffect(() => {
     const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-      const windowWidth = entries[0].contentRect.width;
-
-      if (windowWidth < screenBreakpoints.small) {
-        debouncedSetItemsCount(Math.ceil(0.4 * itemsToDisplay));
-      } else if (windowWidth < screenBreakpoints.medium) {
-        debouncedSetItemsCount(Math.ceil(0.7 * itemsToDisplay));
-      }
+      setScreenWidth(entries[0].contentRect.width);
     });
 
     observer.observe(window.document.body);
 
     return () => observer.disconnect();
-  }, [itemsToDisplay, debouncedSetItemsCount]);
+  }, []);
+
+  // Responsiveness logic
+  useEffect(() => {
+    if (screenWidth < screenBreakpoints.small) {
+      debouncedSetItemsCount(Math.ceil(0.2 * itemsToDisplay));
+    } else if (screenWidth < screenBreakpoints.medium) {
+      debouncedSetItemsCount(Math.ceil(0.4 * itemsToDisplay));
+    } else if (screenWidth < screenBreakpoints.extra) {
+      debouncedSetItemsCount(Math.ceil(0.6 * itemsToDisplay));
+    } else {
+      debouncedSetItemsCount(itemsToDisplay);
+    }
+  }, [debouncedSetItemsCount, itemsToDisplay, screenWidth]);
 
   // Calculate needed sizes and positions for transition
   const displayedItemsCount = useMemo(() => Math.min(itemsCount, lastIndex - firstIndex + 1), [
