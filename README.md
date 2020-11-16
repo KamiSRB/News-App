@@ -135,7 +135,7 @@ On addin a new translated text, update the `src\translations\values\{language}\{
 
 A new custom hook is created to translate the text easily.
 
-```react
+```js
 import { namespaces, globalTranslations, useTranslate } from '@translations';
 
 const translate = useTranslate(namespaces.global);
