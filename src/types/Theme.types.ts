@@ -5,8 +5,8 @@ export interface Theme {
     disabled: string;
     active: string;
     activeLink: string;
-    nav: string;
-    hoverNav: string;
+    foreground: string;
+    foregroundHover: string;
     background: string;
     handler: string;
     handlerContent: string;

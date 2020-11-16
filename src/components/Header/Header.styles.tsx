@@ -9,7 +9,7 @@ export const StyledHeaderDiv = styled.div<Record<never, never>, Theme>`
   position: fixed;
   top: 0px;
   left: 0px;
-  background-color: ${({ theme }) => theme.color.nav};
+  background-color: ${({ theme }) => theme.color.foreground};
   display: flex;
   flex-direction: row;
   justify-content: space-between;

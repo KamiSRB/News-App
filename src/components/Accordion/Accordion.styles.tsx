@@ -17,7 +17,7 @@ export const StyledAccordionHeadingDiv = styled.div<StyledAccordionHeadingDivPro
   font-size: 1.6em;
   padding: 0.37em;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.color.hoverNav};
+  background-color: ${({ theme }) => theme.color.foregroundHover};
   border-radius: ${({ isOpen }) => (isOpen ? '5px 5px 0px 0px' : '5px')};
 `;
 
@@ -41,7 +41,7 @@ export const StyledAccordionContentWrapperDiv = styled.div<
 >`
   width: 100%;
   overflow: hidden;
-  background-color: ${({ theme }) => theme.color.nav};
+  background-color: ${({ theme }) => theme.color.foreground};
   height: ${({ isOpen, height }) => (isOpen ? `${height}px` : 0)};
   transition: ease 1s;
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};

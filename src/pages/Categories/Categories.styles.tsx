@@ -21,7 +21,7 @@ export const StyledHeadingWrapperDiv = styled.div`
 export const StyledAccordionsFrameDiv = styled.div<Record<never, never>, Theme>`
   flex-basis: 90%;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.color.nav};
+  background-color: ${({ theme }) => theme.color.foreground};
 `;
 
 export const StyledCategoryAccordionWraperDiv = styled.div`

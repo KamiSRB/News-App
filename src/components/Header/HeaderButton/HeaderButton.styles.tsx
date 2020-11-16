@@ -21,13 +21,13 @@ export const StyledHeaderButtonWrapperDiv = styled.div<StyledHeaderButtonWrapper
   vertical-align: top;
   font-family: ${({ theme }) => theme.fontFamily.sansSerif};
 
-  background-color: ${({ theme }) => theme.color.nav};
+  background-color: ${({ theme }) => theme.color.foreground};
   ${({ isActive, theme }) =>
     isActive ? `background-color: ${theme.color.active}; color: ${theme.color.activeLink};` : ''}
   ${({ isDisabled, theme }) =>
     isDisabled
       ? `cursor: not-allowed; background-color: ${theme.color.disabled};`
-      : `cursor: pointer; :hover { background-color: ${theme.color.hoverNav}; };`}
+      : `cursor: pointer; :hover { background-color: ${theme.color.foregroundHover}; };`}
 `;
 
 export default {

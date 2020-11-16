@@ -14,7 +14,7 @@ export const StyledSearchInput = styled.input<Record<never, never>, Theme>`
   flex-grow: 0;
   flex-shrink: 1;
   font-size: 1.5em;
-  background-color: ${({ theme }) => theme.color.nav};
+  background-color: ${({ theme }) => theme.color.foreground};
 `;
 
 export default { StyledSearchWrapperDiv };
