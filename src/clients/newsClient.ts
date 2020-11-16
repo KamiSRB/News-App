@@ -58,7 +58,10 @@ const handleSingleArticleResponse = (
 
 export const getTopNews = (country: string): Promise<Article[]> =>
   new Promise((resolve, reject) => {
-    if (process.env.REACT_APP_USE_MOCK_DATA) {
+    if (
+      process.env.REACT_APP_USE_MOCK_DATA?.toLowerCase() === 'true' ||
+      process.env.REACT_APP_USE_MOCK_DATA === '1'
+    ) {
       mockedArticles.sort();
       resolve(shuffle(mockedArticles));
       return;
@@ -72,7 +75,10 @@ export const getTopNews = (country: string): Promise<Article[]> =>
 
 export const getArticle = (title: string): Promise<Article> =>
   new Promise((resolve, reject) => {
-    if (process.env.REACT_APP_USE_MOCK_DATA) {
+    if (
+      process.env.REACT_APP_USE_MOCK_DATA?.toLowerCase() === 'true' ||
+      process.env.REACT_APP_USE_MOCK_DATA === '1'
+    ) {
       resolve(mockedArticles[0]);
       return;
     }
@@ -85,7 +91,10 @@ export const getArticle = (title: string): Promise<Article> =>
 
 export const getArticlesByCategory = (country: string, category: string): Promise<Article[]> =>
   new Promise((resolve, reject) => {
-    if (process.env.REACT_APP_USE_MOCK_DATA) {
+    if (
+      process.env.REACT_APP_USE_MOCK_DATA?.toLowerCase() === 'true' ||
+      process.env.REACT_APP_USE_MOCK_DATA === '1'
+    ) {
       resolve(shuffle(mockedArticles));
       return;
     }
@@ -98,7 +107,10 @@ export const getArticlesByCategory = (country: string, category: string): Promis
 
 export const getArticlesByQuery = (country: string, query: string): Promise<Article[]> =>
   new Promise((resolve, reject) => {
-    if (process.env.REACT_APP_USE_MOCK_DATA) {
+    if (
+      process.env.REACT_APP_USE_MOCK_DATA?.toLowerCase() === 'true' ||
+      process.env.REACT_APP_USE_MOCK_DATA === '1'
+    ) {
       resolve(
         shuffle(
           mockedArticles.filter(
