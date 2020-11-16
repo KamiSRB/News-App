@@ -19,3 +19,4 @@ export const screenBreakpoints = {
 // Application settings
 export const NEWS_PER_CATEGORY_COUNT = 5;
 export const SEARCH_DEBOUNCE_MILISECONDS = 500;
+export const DEFAULT_PAGE_SIZE = 9;
