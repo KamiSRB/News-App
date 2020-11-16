@@ -5,3 +5,8 @@ export interface Article {
   content?: string;
   url: string;
 }
+
+export interface ArticlesResponse {
+  totalResults: number;
+  articles: Article[];
+}

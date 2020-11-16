@@ -9,6 +9,8 @@ import { NewsApplicationContext } from '../../context/newsAppContext';
 import { StyledNewsPageWrapper } from '../TopNews/TopNews.styles';
 import { Category } from '../../types/Category.types';
 import { Article } from '../../types/Article.types';
+import { DEFAULT_PAGE_SIZE } from '../../constants';
+import usePagination from '../../hooks/usePagination';
 
 interface RouteParams {
   categoryId: string;
@@ -16,11 +18,21 @@ interface RouteParams {
 
 const CategoryPage: React.FC = () => {
   const [category, setCategory] = useState<Category>();
-  const [articles, setArticles] = useState<Article[]>([]);
+
   const translate = useTranslate(namespaces.global);
   const { selectedCountry, setSelectedArticle } = useContext(NewsApplicationContext);
   const { categoryId } = useParams<RouteParams>();
   const history = useHistory();
+
+  const [articles, setArticles] = useState<Article[]>([]);
+  const {
+    pageNo,
+    setPageNo,
+    pagesCount,
+    setPagesCount,
+    loadPreviousPage,
+    loadNextPage,
+  } = usePagination();
 
   // Check if the requested category exists
   useEffect(() => {
@@ -34,10 +46,17 @@ const CategoryPage: React.FC = () => {
   useEffect(() => {
     if (!category) return;
 
-    getArticlesByCategory(selectedCountry.value, category.value)
-      .then(setArticles)
+    getArticlesByCategory(selectedCountry.value, category.value, pageNo, DEFAULT_PAGE_SIZE)
+      .then(({ articles: foundArticles, totalResults }) => {
+        if (foundArticles.length) {
+          setArticles(foundArticles);
+          setPagesCount(Math.ceil(totalResults / DEFAULT_PAGE_SIZE));
+        } else if (totalResults > 0) {
+          setPageNo(Math.ceil(totalResults / DEFAULT_PAGE_SIZE));
+        }
+      })
       .catch(() => history.push('/categories'));
-  }, [category, history, selectedCountry.value]);
+  }, [category, history, selectedCountry.value, setPagesCount, pageNo, setPageNo]);
 
   return (
     <StyledNewsPageWrapper>
@@ -54,6 +73,10 @@ const CategoryPage: React.FC = () => {
         articles={articles}
         articlesDetailRoute="/news"
         onArticleClick={setSelectedArticle}
+        isFirstPage={pageNo === 1}
+        isLastPage={!pagesCount || pageNo === pagesCount}
+        onLoadNextPage={loadNextPage}
+        onLoadPreviousPage={loadPreviousPage}
       />
     </StyledNewsPageWrapper>
   );

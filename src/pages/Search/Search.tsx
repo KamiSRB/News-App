@@ -9,16 +9,26 @@ import { NewsApplicationContext } from '../../context/newsAppContext';
 import { StyledNewsPageWrapper } from '../TopNews/TopNews.styles';
 import { StyledSearchInputWrapper } from './Search.styles';
 import { Article } from '../../types/Article.types';
-import { SEARCH_DEBOUNCE_MILISECONDS } from '../../constants';
+import { DEFAULT_PAGE_SIZE, SEARCH_DEBOUNCE_MILISECONDS } from '../../constants';
+import usePagination from '../../hooks/usePagination';
 
 const Search: React.FC = () => {
   const [query, setQuery] = useState<string>('');
-  const [foundArticles, setFoundArticles] = useState<Article[]>([]);
   const translate = useTranslate(namespaces.global);
   const { selectedCountry } = useContext(NewsApplicationContext);
   const history = useHistory();
   const match = useRouteMatch();
   const { search } = useLocation();
+
+  const [foundArticles, setFoundArticles] = useState<Article[]>([]);
+  const {
+    pageNo,
+    pagesCount,
+    setPageNo,
+    setPagesCount,
+    loadPreviousPage,
+    loadNextPage,
+  } = usePagination();
 
   // Update the URL query parameter on input change
   const handleSearchInputChange = useCallback(
@@ -30,17 +40,20 @@ const Search: React.FC = () => {
 
   // Set query using the URL
   useEffect(() => {
+    setPageNo(1);
     const searchQuery = new URLSearchParams(search).get('q');
+    setQuery(decodeURIComponent(searchQuery || ''));
+  }, [search, setPageNo]);
 
-    if (searchQuery) setQuery(decodeURIComponent(searchQuery));
-  }, [search]);
-
-  // Fetch/refetch results on query/country change
+  // Fetch/refetch results on query/country/page change
   useEffect(() => {
-    getArticlesByQuery(selectedCountry.value, query)
-      .then(setFoundArticles)
+    getArticlesByQuery(selectedCountry.value, query, pageNo, DEFAULT_PAGE_SIZE)
+      .then((response) => {
+        setFoundArticles(response.articles);
+        setPagesCount(Math.ceil(response.totalResults / DEFAULT_PAGE_SIZE));
+      })
       .catch(() => setFoundArticles([]));
-  }, [query, selectedCountry.value]);
+  }, [query, selectedCountry.value, pageNo, setPagesCount]);
 
   return (
     <StyledNewsPageWrapper>
@@ -57,10 +70,18 @@ const Search: React.FC = () => {
         <SearchInput
           onChange={handleSearchInputChange}
           debounceInterval={SEARCH_DEBOUNCE_MILISECONDS}
+          placeholder={query}
         />
       </StyledSearchInputWrapper>
 
-      <ArticlesGrid articles={foundArticles} articlesDetailRoute="/news" />
+      <ArticlesGrid
+        articles={foundArticles}
+        articlesDetailRoute="/news"
+        isFirstPage={pageNo === 1}
+        isLastPage={!pagesCount || pageNo === pagesCount}
+        onLoadNextPage={loadNextPage}
+        onLoadPreviousPage={loadPreviousPage}
+      />
     </StyledNewsPageWrapper>
   );
 };

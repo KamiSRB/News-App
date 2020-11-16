@@ -16,7 +16,7 @@ import {
   StyledHeadingWrapperDiv,
   StyledItemsCarouselWrapperDiv,
 } from './Categories.styles';
-import { Article } from '../../types/Article.types';
+import { Article, ArticlesResponse } from '../../types/Article.types';
 import { CarouselItem } from '../../components/ItemsCarousel/ItemsCarousel.types';
 import ArticlePreviewCard from '../../components/ArticlePreviewCard';
 
@@ -31,9 +31,11 @@ const Categories: React.FC = () => {
   // Fetch the articles list
   const getCategoyArticles = useCallback(
     (category: string) => {
-      getArticlesByCategory(selectedCountry.value, category).then((foundArticles: Article[]) => {
-        setArticles({ ...articles, [category]: foundArticles });
-      });
+      getArticlesByCategory(selectedCountry.value, category).then(
+        (foundArticles: ArticlesResponse) => {
+          setArticles({ ...articles, [category]: foundArticles.articles });
+        }
+      );
     },
     [articles, selectedCountry]
   );

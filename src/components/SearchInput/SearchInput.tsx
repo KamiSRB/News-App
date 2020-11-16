@@ -8,9 +8,14 @@ import { StyledSearchInput, StyledSearchWrapperDiv } from './SearchInput.styles'
 export interface SearchInputProps {
   onChange: (value: string) => void;
   debounceInterval?: number;
+  placeholder?: string;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ onChange, debounceInterval = 200 }) => {
+const SearchInput: React.FC<SearchInputProps> = ({
+  onChange,
+  debounceInterval = 200,
+  placeholder,
+}) => {
   const translate = useTranslate(namespaces.global);
   const theme = useTheme() as Theme;
   const { callback: debouncedOnChange } = useDebouncedCallback(onChange, debounceInterval);
@@ -23,7 +28,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ onChange, debounceInterval = 
     <StyledSearchWrapperDiv>
       <StyledSearchInput
         type="text"
-        placeholder={translate(globalTranslations.InputSearchPlaceholder)}
+        placeholder={placeholder || translate(globalTranslations.InputSearchPlaceholder)}
         theme={theme}
         onChange={handleInputChange}
         data-testid="search-input"
