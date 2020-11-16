@@ -10,9 +10,19 @@ interface RouteParams {
 
 const ArticlePage: React.FC = () => {
   const [article, setArticle] = useState<Article>();
-  const { selectedArticle } = useContext(NewsApplicationContext);
+  const { selectedArticle, enableCountrySelection, disableCountrySelection } = useContext(
+    NewsApplicationContext
+  );
   const params = useParams<RouteParams>();
   const history = useHistory();
+
+  // Disable country selection on this page and enable it again on component unmounting
+  // If more pages needs this logic, extract it to a custom hook or even to some wrapper component around the pages with configurable routes
+  useEffect(() => {
+    disableCountrySelection();
+
+    return () => enableCountrySelection();
+  }, [disableCountrySelection, enableCountrySelection]);
 
   // Some caching mechanism would be great here
   useEffect(() => {

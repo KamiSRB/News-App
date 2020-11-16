@@ -11,7 +11,9 @@ import navigationTranslations from './translations/values/dev/navigation.transla
 import useComponentSize from './hooks/useComponentSize';
 
 const AppRouter: React.FC = () => {
-  const { countries, selectedCountry, changeCountry } = useContext(NewsApplicationContext);
+  const { countries, selectedCountry, isCountrySelectionEnabled, changeCountry } = useContext(
+    NewsApplicationContext
+  );
   const translate = useTranslate(namespaces.navigation);
 
   const headerRef = useRef<HTMLDivElement>(null);
@@ -34,6 +36,7 @@ const AppRouter: React.FC = () => {
         selectedCountry={selectedCountry}
         onCountryChange={changeCountry}
         ref={headerRef}
+        areCountriesDisabled={!isCountrySelectionEnabled}
       />
 
       <Scrollbars
