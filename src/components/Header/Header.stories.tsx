@@ -8,6 +8,8 @@ import Header, { HeaderProps } from './Header';
 import navItems from './mock-data/navItems.mock';
 import countries from '../../mock-data/countries.mock';
 
+const ref = React.createRef<HTMLDivElement>();
+
 export default {
   title: 'Organisms/Header',
   component: Header,
@@ -24,6 +26,6 @@ export default {
   },
 } as Meta;
 
-const Template: Story<HeaderProps> = (props) => <Header {...props} />;
+const Template: Story<HeaderProps> = (props) => <Header {...props} ref={ref} />;
 
 export const Example = Template.bind({});

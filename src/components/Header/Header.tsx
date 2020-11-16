@@ -15,49 +15,48 @@ export interface HeaderProps {
   areCountriesDisabled?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  navItems,
-  countries,
-  selectedCountry,
-  onCountryChange,
-  areCountriesDisabled = false,
-}) => {
-  const theme = useTheme() as Theme;
-  const location = useLocation();
+const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
+  (
+    { navItems, countries, selectedCountry, onCountryChange, areCountriesDisabled = false },
+    ref
+  ) => {
+    const theme = useTheme() as Theme;
+    const location = useLocation();
 
-  const handleCountryChange = useCallback((country: Country) => () => onCountryChange(country), [
-    onCountryChange,
-  ]);
+    const handleCountryChange = useCallback((country: Country) => () => onCountryChange(country), [
+      onCountryChange,
+    ]);
 
-  return (
-    <StyledHeaderDiv theme={theme}>
-      <StyledHeaderButtonGroupDiv>
-        {navItems?.map((item) => (
-          <span data-testid="nav-item" key={item.route}>
-            <StyledLink to={item.route}>
-              <HeaderButton isActive={location.pathname.includes(item.route)}>
-                {item.title}
+    return (
+      <StyledHeaderDiv theme={theme} ref={ref}>
+        <StyledHeaderButtonGroupDiv>
+          {navItems?.map((item) => (
+            <span data-testid="nav-item" key={item.route}>
+              <StyledLink to={item.route}>
+                <HeaderButton isActive={location.pathname.includes(item.route)}>
+                  {item.title}
+                </HeaderButton>
+              </StyledLink>
+            </span>
+          ))}
+        </StyledHeaderButtonGroupDiv>
+
+        <StyledHeaderButtonGroupDiv>
+          {countries.map((country) => (
+            <span data-testid="country-btn" key={country.value}>
+              <HeaderButton
+                isActive={country === selectedCountry}
+                isDisabled={areCountriesDisabled}
+                onClick={handleCountryChange(country)}
+              >
+                {country.value.toUpperCase()}
               </HeaderButton>
-            </StyledLink>
-          </span>
-        ))}
-      </StyledHeaderButtonGroupDiv>
-
-      <StyledHeaderButtonGroupDiv>
-        {countries.map((country) => (
-          <span data-testid="country-btn" key={country.value}>
-            <HeaderButton
-              isActive={country === selectedCountry}
-              isDisabled={areCountriesDisabled}
-              onClick={handleCountryChange(country)}
-            >
-              {country.value.toUpperCase()}
-            </HeaderButton>
-          </span>
-        ))}
-      </StyledHeaderButtonGroupDiv>
-    </StyledHeaderDiv>
-  );
-};
+            </span>
+          ))}
+        </StyledHeaderButtonGroupDiv>
+      </StyledHeaderDiv>
+    );
+  }
+);
 
 export default React.memo(Header);
